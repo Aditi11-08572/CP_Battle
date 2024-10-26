@@ -1156,8 +1156,10 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 app.get('/api/user/:email', async (req, res) => {
   try {
@@ -1235,3 +1237,10 @@ app.get('/api/contests/:contestCode/questions', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+app.use(express.static(path.join(__dirname, '../../build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+});
+
