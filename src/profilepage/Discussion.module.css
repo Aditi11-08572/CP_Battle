@@ -1,0 +1,32 @@
+
+/* src/components/Discussion.module.css */
+
+.discussionContainer {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+h2 {
+    color: #333; /* Darker text for headings */
+    margin-bottom: 20px; /* Spacing below the heading */
+  }
+  
+.discussionComment {
+    background-color: #fff; /* White background for comments */
+    padding: 15px; /* Padding inside comment */
+    margin-bottom: 15px; /* Space between comments */
+    border-radius: 6px; /* Rounded corners for comments */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+strong {
+    color: #007bff; /* Color for usernames */
+  }
+  
+.commentTime {
+    font-size: 0.9em; /* Slightly smaller text for timestamps */
+    color: #666; /* Gray color for timestamps */
+    margin-top: 5px; /* Space above timestamp */
+  }

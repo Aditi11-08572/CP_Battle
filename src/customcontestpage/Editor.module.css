@@ -1,0 +1,70 @@
+/* Editor.module.css */
+
+/* Style for the editor container */
+.editor-container {
+  padding: 20px; /* Padding around the container */
+  background-color: #1e1e1e; /* Dark background color */
+  color: #fff; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  max-width: 800px; /* Max width for the editor */
+  margin: 0 auto; /* Center the container */
+}
+
+/* Style for the editor title */
+.editor-title {
+  text-align: center; /* Center the title */
+  font-size: 24px; /* Font size for the title */
+  margin-bottom: 20px; /* Margin below the title */
+}
+
+/* Style for the textarea */
+.editor-textarea {
+  width: 100%; /* Full width */
+  height: 200px; /* Set height */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding inside the textarea */
+  background-color: #f8f9fa; /* Light background for textarea */
+  color: #333; /* Dark text for readability */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
+  font-size: 14px; /* Font size for code */
+  margin-bottom: 20px; /* Margin below the textarea */
+}
+
+/* Style for the language selection dropdown */
+.editor-select {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding inside the select */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f8f9fa; /* Light background */
+  margin-bottom: 20px; /* Margin below the select */
+}
+
+/* Existing styles for the execute button */
+.execute-button {
+  display: block; /* Make the button block-level */
+  margin: 0 auto; /* Center the button */
+  padding: 10px 20px; /* Padding around the button */
+  font-size: 16px; /* Font size for the button */
+  color: white; /* Text color */
+  background-color: #007bff; /* Button background color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.execute-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style for the output section */
+.editor-output {
+  margin-top: 20px; /* Margin above the output */
+  padding: 10px; /* Padding inside the output section */
+  background-color: #f1f1f1; /* Light background for output */
+  border-radius: 5px; /* Rounded corners */
+  color: #333; /* Dark text for output */
+}

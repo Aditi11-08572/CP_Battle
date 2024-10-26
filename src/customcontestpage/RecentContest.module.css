@@ -1,0 +1,125 @@
+/* Container styling */
+.recentContestsContainer {
+  margin: 40px auto;
+  max-width: 1400px;
+  padding: 30px;
+  background-color: #f8f9fa; /* Light background for readability */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header styling */
+.recentContestsContainer h1 {
+  text-align: center;
+  color: #343a40;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Table styling */
+.recentContestsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+.recentContestsTable th,
+.recentContestsTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Header row */
+.recentContestsTable th {
+  background-color: #495057; /* Darker background for the header */
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Data rows */
+.recentContestsTable td {
+  background-color: #ffffff; /* White background for rows */
+  color: #212529;
+}
+
+/* Hover effect on rows */
+.recentContestsTable tr:hover {
+  background-color: #f1f3f5; /* Subtle hover effect */
+}
+
+/* Button styles */
+.recentContestsTable button {
+  background-color: #dc3545; /* Red delete button */
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 90px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.recentContestsTable button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Details summary (dropdown) */
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #007bff;
+  padding: 8px 0;
+}
+
+details summary:hover {
+  text-decoration: underline;
+}
+
+/* List of questions in the dropdown */
+details ul {
+  list-style-type: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+details ul li {
+  padding: 5px 0;
+}
+
+details ul li a {
+  color: #495057; /* Dark text for links */
+  text-decoration: none;
+}
+
+details ul li a:hover {
+  text-decoration: underline;
+  color: #007bff; /* Blue color for hover effect */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .recentContestsContainer {
+    padding: 20px;
+  }
+
+  .recentContestsTable th,
+  .recentContestsTable td {
+    padding: 10px;
+  }
+
+  .recentContestsTable th {
+    font-size: 0.9rem;
+  }
+
+  .recentContestsTable td {
+    font-size: 1rem;
+  }
+}

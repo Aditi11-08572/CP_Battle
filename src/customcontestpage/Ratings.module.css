@@ -1,0 +1,14 @@
+/* src/styles/Ratings.module.css */
+
+.ratingsContainer {
+  text-align: center;
+  margin: 20px;
+}
+
+.ratingsContainer h1 {
+  font-size: 24px;
+}
+
+.ratingsContainer p {
+  font-size: 20px;
+}

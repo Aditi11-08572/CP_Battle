@@ -1,0 +1,814 @@
+/* ContestCreationForm.module.css */
+
+.contestForm {
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+  max-width: 80%;
+  margin: 40px auto;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.contestForm:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(255, 255, 255, 0.2) inset;
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap !important; /* Prevents text from wrapping to the next line */
+  overflow: hidden !important;    /* Hides overflowed content */
+  text-overflow: ellipsis !important; /* Adds '...' to indicate truncated text */
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  background-color: #ffffff;
+}
+
+.radioGroup {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.radioGroup .label {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.radio {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+.button,
+.inputSubmit {
+  width: 200px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 0;
+  margin-top: 50px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 50px;
+}
+
+.button:hover,
+.inputSubmit:hover {
+  background-color: #0056b3;
+}
+
+.datepicker {
+  margin-bottom: 20px;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.tagList .label {
+  display: inline-block;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 48%;
+  transition: background-color 0.3s;
+}
+
+.tagList .checkbox {
+  display: none;
+}
+
+.tagList .label:hover {
+  background-color: #e2e6ea;
+}
+
+.tagList .checkbox:checked + .label {
+  background-color: #007bff;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .form {
+    padding: 30px;
+  }
+
+  .radioGroup {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tagList .label {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    
+  }
+
+  .inputSubmit,
+  .button {
+    font-size: 16px;
+  }
+}
+
+.div1 {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.div2 {
+  display: flex;
+  align-items: center;
+  padding-right: 50px;
+}
+
+.para {
+  margin-right: 10px;
+}
+
+.label1 {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.buttonSubmit {
+  margin-top: 20px; /* Space above the button */
+  text-align: center; /* Center the button */
+}
+
+.tagsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.tagLabel {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.tagLabel:hover {
+  background-color: #f0f4f8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tagLabel input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.checkbox01 {
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+/* Custom checkbox styling */
+.tagLabel input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.tagLabel input[type="checkbox"]:checked {
+  background-color: #3498db;
+}
+
+.tagLabel input[type="checkbox"]:checked::before {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+}
+
+/* Scrollbar styling for the tags grid */
+.tagsGrid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tagsGrid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.tagsGrid::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.tagsGrid::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Style for each tag label */
+.tagsGrid .tagLabel {
+  display: flex; /* Use flex to align checkbox and text */
+  align-items: center; /* Center items vertically */
+  background-color: #fff; /* White background for each tag */
+  padding: 5px; /* Padding inside each tag */
+  border: 1px solid #ddd; /* Light border around each tag */
+  border-radius: 3px; /* Rounded corners for tags */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background color transition */
+    margin: 5px;
+}
+
+.tagsGrid .tagLabel:hover {
+  background-color: #f0f0f0; /* Light gray on hover */
+}
+
+/* Button styles */
+.buttonSubmit button {
+  padding: 10px 20px; /* Padding inside the button */
+  font-size: 16px; /* Font size */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.buttonSubmit button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.successMessage {
+  background-color: lightgreen; /* Background color for success */
+  color: white; /* Text color */
+  padding: 10px; /* Padding around the text */
+  margin-bottom: 20px; /* Space below the message */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold; /* Bold text */
+}
+.ccb{
+margin-top: 40px;
+display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers the button vertically */
+  
+}
+.checkbox01{
+  margin-left: 4px !important;
+}
+.DatePicker01{
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.label01{
+  margin-top: 10px;
+}
+
+/* Add these styles at the end of your existing CSS file */
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.popup {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 500px; /* Increased from 400px to 500px */
+  width: 90%;
+  animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+}
+
+.popup h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.popup p {
+  color: #7f8c8d;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.contestCodeContainer {
+  background-color: #f7f9fc;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 2px dashed #3498db;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+}
+
+.contestCodeContainer span {
+  display: block;
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.contestCode {
+  font-size: 24px;
+  color: #2980b9;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.timerContainer {
+  font-size: 36px;
+  color: #e74c3c;
+  font-weight: bold;
+  margin: 20px 0;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popupButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Increased from 15px to 20px for better spacing */
+  margin-top: 30px; /* Increased from 20px to 30px for more vertical space */
+}
+
+.popup button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.copyButton, .addFriendsButton {
+  background-color: #3498db;
+  color: white;
+  flex: 1;
+  max-width: 200px; /* Increased from 150px to 200px */
+  padding: 15px 25px; /* Increased padding for larger buttons */
+}
+
+.copyButton:hover, .addFriendsButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.closeButton {
+  background-color: #e74c3c;
+  color: white;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+.popup button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* New styles for the Invite Friends popup */
+.inviteFriendsOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.inviteFriendsPopup {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.inviteFriendsPopup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+}
+
+.inviteFriendsPopup h3 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.inviteFriendsList {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: #f7f9fc;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inviteFriendItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.inviteFriendItem:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.inviteFriendItem:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+.inviteFriendItem:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inviteFriendItem input[type="checkbox"] {
+  margin-right: 15px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.inviteFriendItem label {
+  flex-grow: 1;
+  font-size: 16px;
+  color: #34495e;
+  cursor: pointer;
+}
+
+.invitePopupButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.invitePopupButtons button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.inviteButton {
+  background-color: #3498db;
+  color: white;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+}
+
+.inviteButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(52, 152, 219, 0.4);
+}
+
+.inviteCloseButton {
+  background-color: #e74c3c;
+  color: white;
+  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.3);
+}
+
+.inviteCloseButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(231, 76, 60, 0.4);
+}
+
+.invitePopupButtons button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+  .inviteFriendsPopup {
+    padding: 30px;
+  }
+
+  .inviteFriendsPopup h3 {
+    font-size: 24px;
+  }
+
+  .invitePopupButtons {
+    flex-direction: column;
+  }
+
+  .invitePopupButtons button {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.formGroup {
+  margin-bottom: 35px;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.label01 {
+  display: block;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.inputField {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.tagsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tagLabel {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tagLabel:hover {
+  background-color: #f0f4f8;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tagLabel input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tagLabel input[type="checkbox"]:checked {
+  background-color: #3498db;
+}
+
+.tagLabel input[type="checkbox"]:checked::before {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+}
+
+.checkbox01 {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.DatePicker01 {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.ccb {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 0.8s ease-out backwards;
+  animation-delay: 0.2s;
+}
+
+.submitButton {
+  padding: 18px 50px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submitButton:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(52, 152, 219, 0.4);
+  background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.submitButton:active {
+  animation: pulse 0.3s ease-in-out;
+}
+.formTitle{
+  color:black;
+}

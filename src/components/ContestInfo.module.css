@@ -1,0 +1,241 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2.5rem;
+  color: black;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.infoItem:hover {
+  transform: translateY(-5px);
+}
+
+.infoItem svg {
+  font-size: 24px;
+  color: #3498db;
+  margin-right: 15px;
+}
+
+.infoItem div {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.registerButton {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 40px auto 0;
+  padding: 15px 30px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.registerButton:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.registerButton:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.registerButton.loading {
+  background-color: #95a5a6;
+  cursor: wait;
+}
+
+.notInvited {
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.error {
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
+
+.joinButton {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 40px auto 0;
+  padding: 15px 30px;
+  background-color: #27ae60;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.joinButton:hover {
+  background-color: #2ecc71;
+  transform: translateY(-2px);
+}
+
+.notRegistered, .contestEnded {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.notRegistered {
+  color: #e67e22;
+}
+
+.contestEnded {
+  color: #7f8c8d;
+}
+
+.infoItem[data-status="Upcoming"] .value {
+  color: #2ecc71;
+}
+
+.infoItem[data-status="Ongoing"] .value {
+  color: #f39c12;
+}
+
+.infoItem[data-status="Ended"] .value {
+  color: #e74c3c;
+}
+
+.infoItem[data-difficulty="Easy"] .value {
+  color: #2ecc71;
+}
+
+.infoItem[data-difficulty="Medium"] .value {
+  color: #f39c12;
+}
+
+.infoItem[data-difficulty="Hard"] .value {
+  color: #e74c3c;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popupContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.popupContent p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.popupContent button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.popupContent button:hover {
+  background-color: #2980b9;
+}
+
+.enterButton {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 40px auto 0;
+  padding: 15px 30px;
+  background-color: #27ae60;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.enterButton:hover {
+  background-color: #2ecc71;
+  transform: translateY(-2px);
+}

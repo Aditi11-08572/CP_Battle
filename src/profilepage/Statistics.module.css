@@ -1,0 +1,116 @@
+/* General styles */
+.body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+/* Main statistics container */
+.statistics {
+  max-width: 1200px;
+  margin: auto; /* Margin for spacing */
+  background-color:solid black 2px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 600px;
+}
+
+/* Problems and ratings section */
+.problemsAndRatings {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Spacing between sections */
+}
+
+/* Problems solved section */
+.problemsSolved {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  height: 550px;
+}
+
+/* Chart container */
+.chartContainer {
+  align-items: center;
+  justify-content: center; /* Center align the charts */
+}
+
+/* Donut chart styles */
+.chart {
+  width: 165px;
+  height: 165px;
+}
+
+/* Problem info styles */
+.problemInfo {
+  margin-left: 20px; /* More space between chart and info */
+  display: flex;
+  flex-direction: column; /* Stack the info items */
+}
+
+/* Info item styles */
+.infoItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 5px; /* Slight padding for better clickability */
+}
+
+/* Color boxes */
+.colorBox {
+  width: 15px; /* Increased size for better visibility */
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+/* Color classes */
+.green {
+  background-color: #00C49F;
+}
+
+.yellow {
+  background-color: #FFBB28;
+}
+
+.red {
+  background-color: #FF8042;
+}
+
+/* Ratings graph section */
+.ratingsGraph {
+  flex: 2; /* Allow this to grow and take up remaining space */
+  overflow-x: auto; /* Allows horizontal scroll if content is too wide */
+  white-space: nowrap; /* Prevents content from wrapping */
+  padding: 20px; /* Consistent padding */
+  border-radius: 8px;
+  background-color: #f8f9fa; /* Similar background for consistency */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* Contest rating section */
+.contestRating {
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 20px; /* Spacing above this section */
+  background-color: #f8f9fa;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .problemsAndRatings {
+    flex-direction: column; /* Stack sections on smaller screens */
+  }
+}
+.rg{
+  height: 500px;
+}

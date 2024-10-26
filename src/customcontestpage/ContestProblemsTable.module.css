@@ -1,0 +1,350 @@
+/* ContestProblemsTable.module.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --background-color: #f0f4f8;
+  --text-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --hover-color: #2980b9;
+  --tag-bg-color: #f7f1f1;
+  --tag-text-color: #000000;
+  --tag-hover-bg-color: #3498db;
+  --tag-hover-text-color: #ffffff;
+}
+
+.problemsTableContainer {
+  font-family: 'Poppins', sans-serif;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contestHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  color:white;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(44, 62, 80, 0.1);
+}
+
+.contestHeader h1 {
+  font-size: 2.5rem;
+  color: black;
+  margin: 0;
+  background-color: white;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.contestInfo {
+  display: flex;
+  align-items: center;
+}
+
+.timerWrapper {
+  width: 120px;
+  margin-right: 2rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.statsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+
+.stat svg {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+.refreshButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+}
+
+.refreshButton:hover {
+  background-color: var(--hover-color);
+  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.problemsTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.problemsTable th,
+.problemsTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+  transition: all 0.3s ease;
+}
+
+.problemsTable th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.problemsTable tr:hover td {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.problemLink {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.problemLink:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tag {
+  background-color: var(--tag-bg-color);
+  color: var(--tag-text-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tag:hover {
+  background-color: var(--tag-hover-bg-color);
+  color: var(--tag-hover-text-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tag svg {
+  margin-right: 0.2rem;
+  font-size: 0.7rem;
+}
+
+.solvedProblem {
+  background-color: rgba(46, 204, 113, 0.1);
+}
+
+.ok {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.wrong-answer,
+.time-limit-exceeded,
+.memory-limit-exceeded,
+.runtime-error {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.contestButtons {
+  margin-top: 1.5rem;
+}
+
+.centerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitContestBtn {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(46, 204, 113, 0.3);
+}
+
+.submitContestBtn:hover {
+  background-color: #27ae60;
+  box-shadow: 0 6px 12px rgba(46, 204, 113, 0.4);
+  transform: translateY(-2px);
+}
+
+.rankingsSection {
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.rankingsSection h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.navigateButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+}
+
+.navigateButton:hover {
+  background-color: var(--hover-color);
+  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+}
+
+.ratingSection {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+.ratingSection svg {
+  margin-right: 0.5rem;
+  color: #f39c12;
+}
+
+@media (max-width: 768px) {
+  .problemsTableContainer {
+    padding: 1rem;
+  }
+
+  .contestHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contestInfo {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timerWrapper {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .problemsTable th,
+  .problemsTable td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+.contestOverContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.contestOverContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.contestOverContainer p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}

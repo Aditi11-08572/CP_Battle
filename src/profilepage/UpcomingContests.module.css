@@ -1,0 +1,36 @@
+/* UpcomingContests.module.css */
+
+.upcomingContestsContainer {
+  padding: 20px;
+}
+
+.contestsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.contestsTable th,
+.contestsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #333;
+}
+
+.contestsTable th {
+  background-color: #f2f2f2;
+}
+
+.errorMessage {
+  color: red; /* Styling for error message */
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  margin-top: 20px;
+}

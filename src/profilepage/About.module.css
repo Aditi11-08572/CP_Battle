@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.container01 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a192f;
+  color: #8892b0;
+}
+
+.backgroundAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #0a192f, #112240);
+  z-index: -1;
+  animation: gradientBG 15s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.heading {
+  color: #64ffda;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.cardsWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  z-index: 2;
+}
+
+.card {
+  width: 300px;
+  background: rgba(17, 34, 64, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: float 5s ease-in-out infinite;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 15px 40px rgba(100, 255, 218, 0.2);
+}
+
+.card:nth-child(2) {
+  animation-delay: 2.5s;
+}
+
+.cardContent {
+  position: relative;
+  padding: 80px 20px 20px;
+}
+
+.imageContainer {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+
+.imageTop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(10, 25, 47, 0), rgba(10, 25, 47, 0.8));
+}
+
+.card:hover .imageTop {
+  transform: scale(1.1);
+}
+
+.profileImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: -60px auto 0;
+  display: block;
+  transform: scale(1.1);
+  border: 5px solid rgba(100, 255, 218, 0.2);
+  transition: transform 0.5s ease;
+}
+
+.card:hover .profileImage {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.fullname {
+  font-size: 24px;
+  color: #ccd6f6;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.job {
+  color: #64ffda;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.aboutMe {
+  font-size: 14px;
+  color: #8892b0;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.contactButton {
+  display: block;
+  width: 80%;
+  padding: 12px;
+  margin: 20px auto;
+  background: linear-gradient(45deg, #64ffda, #0a192f);
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  color: #ccd6f6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
+}
+
+.contactButton:hover {
+  background: linear-gradient(45deg, #0a192f, #64ffda);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(100, 255, 218, 0.6);
+}
+
+.socialIcons {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.socialIcons li {
+  margin: 0 10px;
+}
+
+.socialIcons a {
+  color: #64ffda;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #ccd6f6;
+  transform: translateY(-3px);
+  text-shadow: 0 5px 10px rgba(100, 255, 218, 0.4);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 3rem;
+  }
+  .cardsWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 90%;
+    max-width: 350px;
+    margin-bottom: 30px;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}

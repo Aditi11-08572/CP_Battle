@@ -1,0 +1,75 @@
+.submissionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .submissionTable th,
+  .submissionTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .submissionTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .submissionTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .submissionTable a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .submissionTable a:hover {
+    text-decoration: underline;
+  }
+  /*-----------------------------------*/
+  .submissionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1e1e1e; /* Dark background for the table */
+  }
+  
+  .submissionTable th,
+  .submissionTable td {
+    border: 1px solid #444; /* Darker border */
+    padding: 10px;
+    text-align: left;
+    color: #231e1e; /* Light text color */
+    
+  }
+  
+  .submissionTable th {
+    background-color: #2a292b; /* Darker header background */
+    color: #f5f3f3;
+  }
+  
+  .submissionTable tr:nth-child(even) {
+    background-color: #292929; /* Slightly lighter dark for even rows */
+  }
+  
+  .submissionTable tr:hover {
+    background-color: #3b3b3b; /* Highlight on row hover */
+  }
+  
+  .submissionTable a {
+    color: #2861a7; /* Lighter blue for links */
+    text-decoration: none;
+  }
+  
+  .submissionTable a:hover {
+    text-decoration: underline;
+    color: #99ccff; /* Lighter blue on link hover */
+  }
+  .maindiv{
+    width: 100%;
+    display: flex; /* Use Flexbox */
+  flex-direction: column; /* Align items in a column */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  }

@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.customNavbar {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.5rem 0;
+  height: 80px;
+  animation: glow 3s infinite;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #00fff5;
+  font-size: 2.2rem !important;
+  text-shadow: 0 0 10px rgba(0, 255, 245, 0.5), 0 0 20px rgba(0, 255, 245, 0.3), 0 0 30px rgba(0, 255, 245, 0.1);
+  transition: all 0.3s ease;
+}
+
+.brand:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 15px rgba(255, 0, 255, 0.7), 0 0 25px rgba(255, 0, 255, 0.5), 0 0 35px rgba(255, 0, 255, 0.3);
+}
+
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  margin-right: 30px;
+  color: #dddddd !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+}
+
+.profileLink {
+  margin-left: 2rem;
+}
+
+.profileImage {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  border: 2px solid #00fff5;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 245, 0.5);
+}
+
+.profileImage:hover {
+  border-color: #ff00ff;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+}
+
+.button {
+  margin-left: 10px;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  height:45px !important;
+  width: 95px !important;
+}
+
+.signupButton {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.signupButton:hover {
+  background-color: #0056b3;
+}
+
+.button:hover {
+  background-color: #ffffff;
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.links01{
+  font-size: 18px !important;
+  letter-spacing: 2px;
+  margin-right: 30px !important;
+  margin-left:10px  !important;
+  color: #ffffff;
+   
+}
+.me-auto01{
+  gap: 100px;
+}
+.navbar-nav{
+  margin-top: 10px !important;
+}
+#basic-navbar-nav{
+  margin-top: 20px !important;
+}
+.navbarcollapse{
+  margin-top: 30px;
+ 
+}
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.link {
+  font-size: 1.1rem !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.link:hover {
+  color: #00fff5 !important;
+  text-shadow: 0 0 5px rgba(0, 255, 245, 0.5);
+}
+
+.activeLink {
+  color: #00fff5 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 245, 0.7);
+}
+
+.icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.logoutLink {
+  cursor: pointer;
+}
+
+.linkUnderline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #00fff5;
+  box-shadow: 0 0 10px rgba(0, 255, 245, 0.7);
+}
+
+@media (max-width: 991px) {
+  .customNavbar {
+    height: auto;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbarCollapse {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .profileSection {
+    margin-top: 1rem;
+  }
+
+  .profileLink {
+    margin-left: 0;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #00fff5;
+  }
+  50% {
+    box-shadow: 0 0 20px #00fff5, 0 0 30px #00fff5;
+  }
+  100% {
+    box-shadow: 0 0 5px #00fff5;
+  }
+}
+
+.logoutButton {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: #ff4757;
+  border-color: #ff4757;
+}
+
+.logoutButton:hover {
+  background-color: #ff4757;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+}
+
+@media (max-width: 991px) {
+  .logoutButton {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}

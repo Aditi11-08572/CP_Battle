@@ -1,0 +1,61 @@
+.alertOverlay {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+}
+
+.alertBox {
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.alertBox p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.alertBox button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.alertBox button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  border-left: 4px solid #dc3545;
+}
+
+.warning {
+  border-left: 4px solid #ffc107;
+}
+
+.success {
+  border-left: 4px solid #28a745;
+}

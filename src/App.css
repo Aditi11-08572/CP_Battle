@@ -1,0 +1,232 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.Dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Navbar Styles */
+
+/*.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar h1 {
+  margin: 0;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+*/
+
+.left-panel {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+ margin-top: 10px;
+}
+
+
+.right-panel {
+  flex: 2;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+
+/* Profile Styles */
+
+.profile-container {
+  margin-bottom: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.profile-details h2 {
+  margin: 0;
+}
+
+.info {
+  margin: 5px 0;
+}
+
+/* Languages Section */
+.languages-section {
+  margin-bottom: 20px;
+}
+
+.language-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Contests Section */
+.contests-section {
+  margin-top: 20px;
+}
+
+.contests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contests-table th,
+.contests-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.contests-table th {
+  background-color: #f2f2f2;
+}
+
+.more-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.more-button:hover {
+  background-color: #0056b3;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Upcoming Contests Styles */
+.upcoming-contests {
+  margin: 20px 0;
+}
+
+.upcoming-contests h3 {
+  margin-bottom: 10px;
+}
+
+.upcoming-contests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.upcoming-contests-table th,
+.upcoming-contests-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.upcoming-contests-table th {
+  background-color: #f2f2f2;
+}
+.form{
+  width: 700px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .Dashboard {
+    flex-direction: column;
+  }
+
+  .left-panel, .right-panel {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .form {
+    width: 100%;
+    max-width: 700px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container, .recentContestsContainer, .submissionTable, .contestsTable {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input, .button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .modalContent {
+    width: 90%;
+  }
+
+  .footerLinks {
+    flex-direction: column;
+  }
+
+  .footerSection {
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .contestsTable, .submissionTable {
+    font-size: 0.8em;
+  }
+
+  .button, .moreButton {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  .modalContent {
+    padding: 10px;
+  }
+
+  .closeButton {
+    top: 5px;
+    right: 5px;
+  }
+}

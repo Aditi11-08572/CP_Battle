@@ -1,0 +1,110 @@
+/* src/components/Footer.module.css */
+
+.footer {
+  background-color: #282c34; /* Sleek dark background */
+  color: #f8f9fa; /* Softer white for text */
+  padding: 60px 20px; /* Increased padding for better spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif; /* Clean font */
+}
+
+.footerContainer {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 40px; /* More space between sections */
+}
+
+.footerSection {
+  flex: 1;
+  margin: 0 30px; /* Increased margin for spacing */
+}
+
+.footerSection h4 {
+  margin-bottom: 15px; /* Extra space below headings */
+  font-size: 18px; /* Larger heading font */
+  color: #adb5bd; /* Muted color for headings */
+  text-transform: uppercase; /* Uppercase headings */
+}
+
+.footerSection p, .footerSection ul {
+  margin: 10px 0; /* Consistent margin */
+  line-height: 1.6; /* Better line spacing for readability */
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerSection ul li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.footerSection ul li a {
+  color: #f8f9fa; /* Slightly off-white links */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footerSection ul li a:hover {
+  color: #007bff; /* Subtle blue on hover */
+  text-decoration: underline;
+}
+
+.socialMedia {
+  text-align: center;
+  margin-top: 30px; /* Space above social media icons */
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.socialLinks li {
+  margin: 0 15px; /* More space between icons */
+}
+
+.socialLinks li a {
+  color: #f8f9fa;
+  font-size: 26px; /* Larger icons */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.socialLinks li a:hover {
+  color: #007bff; /* Hover effect for icons */
+}
+
+.footerBottom {
+  margin-top: 40px; /* Increased space above footer bottom */
+  text-align: center;
+  font-size: 13px; /* Slightly smaller text */
+  color: #6c757d; /* Muted text color */
+}
+
+.footerBottom p {
+  margin: 5px 0; /* Space between paragraphs */
+}
+
+.p1 {
+  color: #ced4da; /* Softer text color */
+}
+
+.h22 {
+  color: #adb5bd; /* Lighter gray for headings */
+}
+
+.footer hr {
+  border: 1px solid #495057; /* Light horizontal rule */
+  width: 80%; /* Centered, narrow HR */
+  margin: 20px auto; /* Add spacing above/below HR */
+}

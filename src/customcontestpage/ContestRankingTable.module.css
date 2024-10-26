@@ -1,0 +1,205 @@
+.rankingContainer {
+  overflow-x: auto;
+  margin-top: 1rem;
+  animation: fadeIn 0.5s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rankingTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rankingTable th,
+.rankingTable td {
+  padding: 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  background-color: #ffffff; /* Ensure all cells have white background */
+}
+
+.rankingTable th {
+  background-color: #667eea;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.rankingTable th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #3498db;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.rankingTable th:hover::after {
+  transform: scaleX(1);
+}
+
+.sortIndicator {
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+
+.rankingRow {
+  transition: all 0.3s ease;
+}
+
+.rankingRow:hover {
+  background-color: #f0f4f8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.rankingRow td:first-child {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.topRank {
+  background: linear-gradient(45deg, #ffd700, #ffec8b);
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.highlighted {
+  background-color: #e3f2fd;
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .rankingTable {
+    font-size: 0.9rem;
+  }
+
+  .rankingTable th,
+  .rankingTable td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@keyframes fadeInRows {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rankingRow {
+  animation: fadeInRows 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.rankingRow:nth-child(1) { animation-delay: 0.1s; }
+.rankingRow:nth-child(2) { animation-delay: 0.2s; }
+.rankingRow:nth-child(3) { animation-delay: 0.3s; }
+.rankingRow:nth-child(4) { animation-delay: 0.4s; }
+.rankingRow:nth-child(5) { animation-delay: 0.5s; }
+
+/* Add these styles to your existing CSS file */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.paginationButton {
+  background-color: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin: 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+.paginationButton:hover {
+  background-color: #5a6fd6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(102, 126, 234, 0.3);
+}
+
+.paginationButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+.paginationButton:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.paginationInfo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .paginationButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .paginationInfo {
+    font-size: 0.9rem;
+  }
+}
+
+.positive {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.negative {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* .rankingTable th:nth-child(5),
+.rankingTable th:nth-child(6),
+.rankingTable th:nth-child(7) {
+  background-color: #5a6fd6; /* A slightly darker blue */
+  /* color: white;
+} */ 
+
+/* .rankingTable td:nth-child(5),
+.rankingTable td:nth-child(6),
+.rankingTable td:nth-child(7) {
+  font-weight: bold;
+} */

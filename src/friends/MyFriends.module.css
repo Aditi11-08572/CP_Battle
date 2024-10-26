@@ -1,0 +1,497 @@
+/* MyFriends.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 15px 30px;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.tab.active {
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.friend-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.friendCard {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+}
+
+.friendCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.friendCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.friendCard:hover::before {
+  opacity: 1;
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 100px !important;
+  height: 100px !important;
+  margin-bottom: 16px;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out;
+}
+
+.friendCard:hover .avatar {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.friendCard:hover .name {
+  transform: scale(1.05);
+  color: #1976d2;
+}
+
+.ratingChip {
+  margin-bottom: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.friendCard:hover .ratingChip {
+  transform: scale(1.05);
+  background-color: #1976d2;
+  color: #ffffff;
+}
+
+.divider {
+  margin: 16px 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.codeforcesChip {
+  margin-bottom: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.friendCard:hover .codeforcesChip {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.socialIcon {
+  color: #666;
+  margin: 0 8px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.socialIcon:hover {
+  color: #1976d2;
+  transform: scale(1.2);
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friendsSince {
+  margin-bottom: 16px;
+  color: #888;
+  font-style: italic;
+}
+
+.buttonOutlined {
+  color: #d32f2f !important;
+  border-color: #d32f2f !important;
+  background-color: rgba(211, 47, 47, 0.05);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+}
+
+.buttonOutlined:hover {
+  background-color: #d32f2f !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3) !important;
+  transform: translateY(-3px);
+}
+
+.my-friends-page {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  width: 1200px;
+}
+
+.content-wrapper {
+  background-color: #ffffff;
+  min-height: calc(100vh - 64px); /* Subtract the height of the AppBar */
+  width: 100%;
+}
+
+.MuiAppBar-root {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.MuiTabs-root {
+  min-height: 64px;
+}
+
+.MuiTab-root {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  color: #555555 !important;
+  flex-grow: 1;
+}
+
+.MuiTab-root.Mui-selected {
+  color: #1976d2 !important;
+}
+
+.MuiContainer-root {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.MuiAvatar-root {
+  width: 120px !important;
+  height: 120px !important;
+  margin-bottom: 20px;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.friend-card:hover .MuiAvatar-root {
+  transform: scale(1.05);
+}
+
+.MuiTypography-h6 {
+  color: #333333;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.MuiTypography-body2 {
+  color: #666666;
+  margin-bottom: 16px;
+}
+
+.MuiButton-contained {
+  background-color: #1976d2 !important;
+  color: #ffffff !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.MuiButton-outlined {
+  color: #d32f2f !important;
+  border-color: #d32f2f !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.MuiButton-contained:hover {
+  background-color: #1565c0 !important;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3) !important;
+}
+
+.MuiButton-outlined:hover {
+  background-color: rgba(211, 47, 47, 0.04) !important;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.1) !important;
+}
+
+/* Add these new styles for more advanced components */
+
+.ratingBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  background-color: #f0f0f0;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.friendCard:hover .ratingBadge {
+  background-color: #1976d2;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease-in-out;
+}
+
+.friendCard:hover .socialLinks {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.socialIcon {
+  font-size: 24px;
+  color: #666;
+  margin: 0 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.socialIcon:hover {
+  color: #1976d2;
+  transform: scale(1.2);
+}
+
+.cardFooter {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+  color: #888;
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+.friendCard:hover .cardFooter {
+  opacity: 1;
+}
+
+/* Add these new styles for the error popup */
+@keyframes shake {
+  0%, 100% { transform: translateX(-50%) translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-50%) translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(-50%) translateX(5px); }
+}
+
+.errorPopupShake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.requestButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.acceptButton, .addButton {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.acceptButton:hover, .addButton:hover {
+  background-color: #45a049 !important;
+}
+
+.rejectButton, .cancelButton {
+  color: #f44336 !important;
+  border-color: #f44336 !important;
+}
+
+.rejectButton:hover, .cancelButton:hover {
+  background-color: rgba(244, 67, 54, 0.04) !important;
+}
+
+.appBar {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+  background-size: 200% 200% !important;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.tabs {
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-radius: 25px !important;
+  margin: 0 4px !important;
+  min-height: 48px !important;
+}
+
+.tab:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.tab.Mui-selected {
+  opacity: 1;
+  color: #6a11cb !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-weight: 700 !important;
+}
+
+.tab .MuiSvgIcon-root {
+  transition: all 0.3s ease-in-out;
+  margin-right: 8px;
+}
+
+.tab:hover .MuiSvgIcon-root {
+  transform: scale(1.2);
+}
+
+.tab.Mui-selected .MuiSvgIcon-root {
+  transform: scale(1.2);
+  color: #6a11cb !important;
+}
+
+.badge span {
+  font-weight: 600;
+  font-size: 0.75rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.tab:hover .badge span,
+.tab.Mui-selected .badge span {
+  transform: scale(1.1);
+  background-color: #ff4081;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Remove the indicator styles */
+.tabs .MuiTabs-indicator {
+  display: none;
+}

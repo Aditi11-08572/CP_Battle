@@ -1,0 +1,877 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --accent-color: #e74c3c;
+  --background-color: #f0f4f8;
+  --card-background: #ffffff;
+  --text-color: #2c3e50;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.mainboardContainer {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: all 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+}
+
+.header01 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3498db;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  background-color: white;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+}
+
+.createContestButton,
+.joinContestButton {
+  padding: 10px 20px;
+  margin-right: 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.createContestButton:hover,
+.joinContestButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.notificationIcon,
+.logoutButton {
+  font-size: 24px;
+  color: #7f8c8d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f3f5;
+}
+
+.notificationIcon:hover,
+.logoutButton:hover {
+  color: #e74c3c;
+  background-color: #fde3e3;
+  transform: scale(1.1);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Add this new class for the icons container */
+.navIcons {
+  display: flex;
+  align-items: center;
+}
+
+.contestsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.contestColumn {
+  background-color: var(--card-background);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 20px var(--shadow-color);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.contestColumn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px var(--shadow-color);
+}
+
+.heading {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.heading:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  transition: width 0.3s ease;
+}
+
+.heading:hover:after {
+  width: 100%;
+}
+
+.contestTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.contestTable th,
+.contestTable td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.contestTable th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contestTable tr {
+  background-color: var(--card-background);
+  transition: all 0.3s ease;
+}
+
+
+.contestTable tr:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.contestName {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.viewButton {
+  padding: 8px 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewButton:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.moreButton {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.moreButton:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add responsive styles */
+@media (max-width: 768px) {
+  .contestsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navButtons {
+    margin-top: 20px;
+  }
+
+  .createContestButton,
+  .joinContestButton {
+    margin-bottom: 10px;
+  }
+}
+
+/* Notification Icon */
+.notificationIcon {
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+  color: #e0e0e0;
+  margin-right: 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.notificationIcon:hover {
+  color: #e94560;
+  transform: scale(1.1);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #e94560;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(233, 69, 96, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(233, 69, 96, 0);
+  }
+}
+
+/* Notification Menu */
+.notificationMenu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 480px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease-out;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.notificationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.notificationHeader h3 {
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(45deg, #3498db, #2ecc71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #888;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  left: 100px;
+}
+
+.closeButton:hover {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+  transform: rotate(90deg);
+}
+
+.closeButton:active {
+  transform: rotate(90deg) scale(0.9);
+}
+
+.notificationList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notificationItem {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: visible;
+}
+
+.notificationContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notificationHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.profilePhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.senderInfo {
+  flex-grow: 1;
+}
+
+.senderName {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.notificationMessage {
+  font-size: 14px;
+  color: #34495e;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.contestInfo {
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.contestName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.contestCode {
+  font-size: 16px;
+  color: #3498db;
+}
+
+.contestCode span {
+  font-weight: bold;
+  background-color: #e8f6ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.notificationFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.notificationTime {
+  font-size: 12px;
+  color: #7f8c8d;
+  display: flex;
+  align-items: center;
+}
+
+.notificationTime svg {
+  margin-right: 5px;
+}
+
+.joinContestButton {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.joinContestButton:hover {
+  background-color: #27ae60;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff9999;
+  color: #cc0000;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.deleteButton:hover {
+  background-color: #ff4d4d;
+  color: white;
+  transform: scale(1.1);
+}
+
+.deleteButton:active {
+  transform: scale(0.95);
+}
+
+.deleteButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.noNotifications {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+@keyframes slideOut {
+  from { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to { 
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.notificationItem.removing {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+/* Join via Code Button */
+.joinContestButton {
+  padding: 10px 20px;
+  margin-right: 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.joinContestButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Popup Overlay */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Popup */
+.popup {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.popupTitle {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.inputWrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.popupInput {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: #f8f8f8;
+}
+
+.popupInput:focus {
+  outline: none;
+  border-color: #3498db;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.popupButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.popupButton {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.joinButton {
+  background-color: #3498db;
+  color: #ffffff;
+  margin-right: 15px;
+}
+
+.joinButton:hover {
+  background-color: #2980b9;
+}
+
+.cancelButton {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cancelButton:hover {
+  background-color: #e0e0e0;
+}
+
+.joinMessage {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0;
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .popup {
+    padding: 30px;
+  }
+
+  .popupTitle {
+    font-size: 24px;
+  }
+
+  .popupInput {
+    font-size: 14px;
+  }
+
+  .popupButton {
+    font-size: 14px;
+  }
+}
+
+.contestSection {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  color: #2196f3;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #2196f3, #03a9f4);
+  border-radius: 2px;
+}
+
+.contestTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.contestTable th {
+  color: #000000;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.contestTable td {
+  padding: 15px;
+  background-color: #f5f7fa;
+  transition: all 0.3s ease;
+}
+
+.contestTable tr {
+  transition: all 0.3s ease;
+}
+
+.contestTable tr:hover td {
+  background-color: #e3f2fd;
+}
+
+.contestName {
+  color: #1976d2;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contestName:hover {
+  color: #0d47a1;
+}
+
+.date, .time {
+  color: #546e7a;
+}
+
+.viewButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.viewButton:hover {
+  background-color: #43a047;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.moreButton {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 10px;
+  background-color: #f5f7fa;
+  color: #2196f3;
+  border: 2px solid #2196f3;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.moreButton:hover {
+  background-color: #2196f3;
+  color: white;
+}
+
+.notificationsPanel {
+  /* existing styles */
+}
+
+.notificationsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.notificationsHeader h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover {
+  color: #333;
+}
