@@ -9,7 +9,7 @@ import { FaBell, FaSignOutAlt, FaTimes, FaClock, FaUser, FaTrashAlt } from 'reac
 import { formatDistanceToNow } from 'date-fns';
 import DOMPurify from 'dompurify';
 import Navbar from './Navbar';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const Mainboard = () => {
  
