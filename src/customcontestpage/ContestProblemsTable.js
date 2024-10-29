@@ -315,17 +315,13 @@ const ContestProblemsTable = () => {
         finishTime: new Date().toISOString(),
       };
 
-      // First submit the contest results
-      const submitResponse = await axios.post('https://codecraft-contest1.onrender.com/api/contests/submit', contestData);
+      // Send the data to the server
+      const response = await axios.post('https://codecraft-contest1.onrender.com/api/contests/submit', contestData);
 
-      if (submitResponse.data.success) {
-        // Then update the contest status for all participants
-        await axios.post('https://codecraft-contest1.onrender.com/api/contests/update-status', {
-          contestId,
-          status: 'SUBMITTED'
-        });
-
+      if (response.data.success) {
         setIsContestSubmitted(true);
+        
+        // Add this contest to the submitted contests list
         addSubmittedContest(contestId);
         console.log('Contest submitted:', contestId);
 
@@ -341,7 +337,7 @@ const ContestProblemsTable = () => {
           replace: true
         });
       } else {
-        throw new Error(submitResponse.data.message || 'Failed to submit contest');
+        throw new Error(response.data.message || 'Failed to submit contest');
       }
     } catch (error) {
       console.error('Error submitting contest:', error);
