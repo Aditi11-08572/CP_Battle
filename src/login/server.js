@@ -19,8 +19,6 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 app.use(cors());
 
-
-const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 
