@@ -18,9 +18,26 @@ app.use(express.json());
 const port = process.env.PORT || 5000;
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/auth', {
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+
+// Update MongoDB connection configuration
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://codecraft_admin:t6xiITkFGLEjsAwa@cluster0.pwpdn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+
+// Replace the existing mongoose.connect with this:
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+})
+  
+.then(() => {
+    console.log('Connected to MongoDB Atlas successfully');
+})
+.catch(err => {
+    console.error('MongoDB connection error:', err);
 });
 
 // Update the user schema to include codeforcesId
