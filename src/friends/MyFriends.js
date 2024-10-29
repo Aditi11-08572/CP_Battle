@@ -351,7 +351,7 @@ const MyFriends = () => {
     if (friend.profile_pic) {
       return (
         <Avatar
-          src={`http://localhost:5000${friend.profile_pic}`}
+          src={`https://codecraft-contest1.onrender.com${friend.profile_pic}`}
           alt={friend.name}
           className={styles.avatar}
         />
