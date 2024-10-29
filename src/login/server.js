@@ -15,7 +15,8 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
-const port = process.env.PORT || 5000;
+
+const PORT = process.env.PORT || 10000;
 app.use(cors());
 
 
@@ -1177,7 +1178,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 10000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
