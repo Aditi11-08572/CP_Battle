@@ -163,12 +163,15 @@ const Mainboard = () => {
     setShowJoinPopup(true);
   };
 
-  const handleJoinContest = async () => {
+  const handleJoinContest = async (code) => {
+    // Use the provided code or the one from state
+    const contestCodeToUse = code || contestCode;
+    
     try {
       const userEmail = localStorage.getItem('userEmail');
-      console.log(`Attempting to join contest ${contestCode} for user ${userEmail}`);
+      console.log(`Attempting to join contest ${contestCodeToUse} for user ${userEmail}`);
       
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${contestCode}/check-invitation`, {
+      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${contestCodeToUse}/check-invitation`, {
         params: { userEmail }
       });
       
@@ -176,9 +179,9 @@ const Mainboard = () => {
 
       if (response.data.success) {
         if (response.data.isInvited) {
-          console.log(`User is invited. Navigating to contest: ${contestCode}`);
+          console.log(`User is invited. Navigating to contest: ${contestCodeToUse}`);
           setJoinMessage('You are invited! Redirecting...');
-          navigate(`/contest-info/${contestCode}`);
+          navigate(`/contest-info/${contestCodeToUse}`);
         } else {
           console.log('User is not invited to this contest.');
           setJoinMessage('You are not invited to this contest.');
@@ -189,15 +192,6 @@ const Mainboard = () => {
       }
     } catch (error) {
       console.error('Error joining contest:', error);
-      if (error.response) {
-        console.error('Error response:', error.response.data);
-        console.error('Error status:', error.response.status);
-        console.error('Error headers:', error.response.headers);
-      } else if (error.request) {
-        console.error('Error request:', error.request);
-      } else {
-        console.error('Error message:', error.message);
-      }
       setJoinMessage('An error occurred. Please try again.');
     }
   };
@@ -298,6 +292,73 @@ const Mainboard = () => {
     navigate('/all-past-contests');
   };
 
+  // Add this function near your other utility functions
+  const copyToClipboard = async (code) => {
+    try {
+      await navigator.clipboard.writeText(code);
+      // You can add a toast or notification here to show success
+      console.log('Contest code copied to clipboard:', code);
+    } catch (err) {
+      console.error('Failed to copy code:', err);
+    }
+  };
+
+  // Update the notifications rendering section
+  const renderNotifications = () => (
+    <div className={styles.notificationList}>
+      {notifications.length === 0 ? (
+        <p className={styles.noNotifications}>You're all caught up!</p>
+      ) : (
+        <ul>
+          {notifications.map((notification) => (
+            <li 
+              key={notification._id}
+              id={`notification-${notification._id}`}
+              className={`${styles.notificationItem} ${!notification.read ? styles.unread : ''}`}
+            >
+              <div className={styles.notificationContent}>
+                <div className={styles.notificationHeader}>
+                  <div className={styles.userAvatar}>
+                    {getInitials(notification.from)}
+                  </div>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => deleteNotification(notification._id)}
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+                <div 
+                  className={styles.notificationMessage}
+                  dangerouslySetInnerHTML={{ __html: formatMessage(notification.message) }}
+                />
+                <div className={styles.notificationFooter}>
+                  <div className={styles.notificationTime}>
+                    <FaClock /> {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                  </div>
+                  <div className={styles.notificationActions}>
+                    <button 
+                      className={styles.joinContestButton}
+                      onClick={() => handleJoinContest(notification.contestCode)}
+                    >
+                      JOIN CONTEST
+                    </button>
+                    <button 
+                      className={styles.copyCodeButton}
+                      onClick={() => copyToClipboard(notification.contestCode)}
+                    >
+                      COPY CODE
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+
   return (
     <>
        <Navbar/>
@@ -334,43 +395,7 @@ const Mainboard = () => {
                   <FaTimes />
                 </button>
               </div>
-              {notifications.length === 0 ? (
-                <p className={styles.noNotifications}>You're all caught up!</p>
-              ) : (
-                <ul className={styles.notificationList}>
-                  {notifications.map((notification) => (
-                    <li 
-                      key={notification._id} 
-                      className={styles.notificationItem}
-                    >
-                      <div className={styles.notificationContent}>
-                        <div className={styles.notificationHeader}>
-                          <div className={styles.profilePhoto}>
-                            {getInitials(notification.senderName || notification.senderEmail || 'U')}
-                          </div>
-                          <div className={styles.notificationMessage}>
-                            {notification.senderName || 
-                              notification.senderEmail} has invited you to join the contest
-                          </div>
-                        </div>
-                        <div className={styles.contestInfo}>
-                          <div className={styles.contestCode}>
-                            Code: <span>{notification.contestCode}</span>
-                          </div>
-                        </div>
-                        <div className={styles.notificationFooter}>
-                          <div className={styles.notificationTime}>
-                            <FaClock /> {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
-                          </div>
-                         <button className={styles.joinContestButton} onClick={() => copyToClipboard(notification.contestCode)}>
-                            COPY CODE
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              {renderNotifications()}
             </div>
           </div>
         )}
