@@ -39,7 +39,6 @@ const ContestProblemsTable = () => {
   const [rating, setRating] = useState(1500); 
   const [solvedProblems, setSolvedProblems] = useState(new Set());
   const [userHandle, setUserHandle] = useState('');
-  const [userCodeforcesId, setUserCodeforcesId] = useState('Laxmikant_Mahindrakar'); // Set default hardcoded ID
   const [problemStatuses, setProblemStatuses] = useState({});
   const [points, setPoints] = useState({});
   const [totalPoints, setTotalPoints] = useState(0);
@@ -476,7 +475,7 @@ const ContestProblemsTable = () => {
               whileTap={{ scale: 0.95 }}
             >
               <FontAwesomeIcon icon={faUser} />
-              <span>{userHandle}</span>
+              <span>{userHandle || 'Loading...'}</span>
             </motion.div>
           </div>
         </div>
