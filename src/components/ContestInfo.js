@@ -161,33 +161,25 @@ const ContestInfo = () => {
       );
     } else if (contestStatus === 'Ongoing' || contestStatus === 'Ended') {
       if (isRegistered) {
-        // Check if contest is submitted by any participant
-        const checkContestSubmission = async () => {
-          try {
-            const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${contestInfo._id}/status`);
-            if (response.data.status === 'SUBMITTED' || hasSubmitted || contestStatus === 'Ended') {
-              return (
-                <button 
-                  onClick={handleViewResults} 
-                  className={styles.enterButton}
-                >
-                  View Results
-                </button>
-              );
-            }
-          } catch (error) {
-            console.error('Error checking contest submission status:', error);
-          }
-        };
-
-        return (
-          <button 
-            onClick={handleEnterContest} 
-            className={styles.enterButton}
-          >
-            {hasEnteredContest ? 'Resume Contest' : 'Enter Contest'}
-          </button>
-        );
+        if (hasSubmitted || contestStatus === 'Ended') {
+          return (
+            <button 
+              onClick={handleViewResults} 
+              className={styles.enterButton}
+            >
+              View Results
+            </button>
+          );
+        } else {
+          return (
+            <button 
+              onClick={handleEnterContest} 
+              className={styles.enterButton}
+            >
+              {hasEnteredContest ? 'Resume Contest' : 'Enter Contest'}
+            </button>
+          );
+        }
       } else {
         return <p className={styles.notRegistered}>You are not registered for this contest.</p>;
       }
