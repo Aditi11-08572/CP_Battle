@@ -21,7 +21,7 @@ const AllPastContests = () => {
       if (!userEmail) {
         throw new Error('User email not found in localStorage');
       }
-      const response = await axios.get(`http://localhost:5000/api/all-past-contests`, {
+      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/all-past-contests`, {
         params: { userEmail }
       });
       setPastContests(response.data);
