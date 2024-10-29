@@ -21,7 +21,7 @@ function Profile() {
           navigate('/login');
           return;
         }
-        const response = await axios.get(`http://localhost:5000/api/user/profile/${userEmail}`);
+        const response = await axios.get(`https://codecraft-contest1.onrender.com/api/user/profile/${userEmail}`);
         setUserProfile(response.data);
         setUserData(response.data);
       } catch (error) {
@@ -55,7 +55,7 @@ function Profile() {
 
       console.log('Sending form data:', Object.fromEntries(formData));
 
-      const response = await axios.put(`http://localhost:5000/api/user/profile/${userProfile.email}`, formData, {
+      const response = await axios.put(`https://codecraft-contest1.onrender.com/user/profile/${userProfile.email}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -85,7 +85,7 @@ function Profile() {
       <div className={styles.header}>
         <div className={styles.avatar}>
           <img 
-            src={userProfile?.profile_pic ? `http://localhost:5000${userProfile.profile_pic}` : "/image.png"} 
+            src={userProfile?.profile_pic ? `https://codecraft-contest1.onrender.com${userProfile.profile_pic}` : "/image.png"} 
             alt="Profile" 
           />
         </div>
