@@ -15,6 +15,7 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
+const port = process.env.PORT || 5000;
 app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/auth', {
