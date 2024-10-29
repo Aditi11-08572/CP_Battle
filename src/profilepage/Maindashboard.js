@@ -362,8 +362,8 @@ const Mainboard = () => {
                           <div className={styles.notificationTime}>
                             <FaClock /> {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
                           </div>
-                          <button className={styles.joinContestButton}>
-                            JOIN CONTEST
+                         <button className={styles.joinContestButton} onClick={() => copyToClipboard(notification.contestCode)}>
+                            COPY CODE
                           </button>
                         </div>
                       </div>
