@@ -55,7 +55,7 @@ function Profile() {
 
       console.log('Sending form data:', Object.fromEntries(formData));
 
-      const response = await axios.put(`https://codecraft-contest1.onrender.com/user/profile/${userProfile.email}`, formData, {
+      const response = await axios.put(`https://codecraft-contest1.onrender.com/api/user/profile/${userProfile.email}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
