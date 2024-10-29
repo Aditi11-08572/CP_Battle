@@ -16,7 +16,7 @@ const ContestRankingTable = ({ contestName, questions = [] }) => {
   const fetchRankings = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/contests/${encodeURIComponent(contestName)}/rankings`, {
+      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${encodeURIComponent(contestName)}/rankings`, {
         params: { page: currentPage, limit: ITEMS_PER_PAGE }
       });
       
@@ -35,7 +35,7 @@ const ContestRankingTable = ({ contestName, questions = [] }) => {
   }, [contestName, currentPage]);
 
   useEffect(() => {
-    const socket = io('http://localhost:5000', {
+    const socket = io('https://codecraft-contest1.onrender.com', {
       withCredentials: true,
       transports: ['websocket', 'polling']
     });
