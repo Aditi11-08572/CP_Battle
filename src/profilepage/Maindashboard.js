@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  // Add this import
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import styles from './Maindashboard.module.css';
@@ -584,6 +586,18 @@ const copyToClipboard = async (code) => {
         </div>
       )}
       {/* <button onClick={() => setTriggerFetch(prev => prev + 1)}>Refresh Contests</button> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
