@@ -7,6 +7,7 @@ import { FaBell, FaSignOutAlt, FaTimes, FaClock, FaUser, FaTrashAlt } from 'reac
 import { formatDistanceToNow } from 'date-fns';
 import DOMPurify from 'dompurify';
 import Navbar from './Navbar';
+import { toast } from 'react-toastify';
 
 const Mainboard = () => {
  
@@ -126,7 +127,36 @@ const Mainboard = () => {
       // Optionally, show an error message to the user
     }
   };
-
+const copyToClipboard = async (code) => {
+  try {
+    await navigator.clipboard.writeText(code);
+    // Add toast notification
+    toast.success('Contest code copied to clipboard!', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      style: {
+        background: '#4CAF50',
+        color: 'white',
+        borderRadius: '8px',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+      }
+    });
+    console.log('Contest code copied to clipboard:', code);
+  } catch (err) {
+    console.error('Failed to copy code:', err);
+    toast.error('Failed to copy code', {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "light"
+    });
+  }
+};
   // Sample contest data
   // const regularContests = [
   //   { id: 1, name: "Codeforces Round #789", date: "2023-06-15", time: "17:35" },
@@ -163,15 +193,12 @@ const Mainboard = () => {
     setShowJoinPopup(true);
   };
 
-  const handleJoinContest = async (code) => {
-    // Use the provided code or the one from state
-    const contestCodeToUse = code || contestCode;
-    
+  const handleJoinContest = async () => {
     try {
       const userEmail = localStorage.getItem('userEmail');
-      console.log(`Attempting to join contest ${contestCodeToUse} for user ${userEmail}`);
+      console.log(`Attempting to join contest ${contestCode} for user ${userEmail}`);
       
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${contestCodeToUse}/check-invitation`, {
+      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${contestCode}/check-invitation`, {
         params: { userEmail }
       });
       
@@ -179,9 +206,9 @@ const Mainboard = () => {
 
       if (response.data.success) {
         if (response.data.isInvited) {
-          console.log(`User is invited. Navigating to contest: ${contestCodeToUse}`);
+          console.log(`User is invited. Navigating to contest: ${contestCode}`);
           setJoinMessage('You are invited! Redirecting...');
-          navigate(`/contest-info/${contestCodeToUse}`);
+          navigate(`/contest-info/${contestCode}`);
         } else {
           console.log('User is not invited to this contest.');
           setJoinMessage('You are not invited to this contest.');
@@ -192,6 +219,15 @@ const Mainboard = () => {
       }
     } catch (error) {
       console.error('Error joining contest:', error);
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        console.error('Error status:', error.response.status);
+        console.error('Error headers:', error.response.headers);
+      } else if (error.request) {
+        console.error('Error request:', error.request);
+      } else {
+        console.error('Error message:', error.message);
+      }
       setJoinMessage('An error occurred. Please try again.');
     }
   };
@@ -292,73 +328,6 @@ const Mainboard = () => {
     navigate('/all-past-contests');
   };
 
-  // Add this function near your other utility functions
-  const copyToClipboard = async (code) => {
-    try {
-      await navigator.clipboard.writeText(code);
-      // You can add a toast or notification here to show success
-      console.log('Contest code copied to clipboard:', code);
-    } catch (err) {
-      console.error('Failed to copy code:', err);
-    }
-  };
-
-  // Update the notifications rendering section
-  const renderNotifications = () => (
-    <div className={styles.notificationList}>
-      {notifications.length === 0 ? (
-        <p className={styles.noNotifications}>You're all caught up!</p>
-      ) : (
-        <ul>
-          {notifications.map((notification) => (
-            <li 
-              key={notification._id}
-              id={`notification-${notification._id}`}
-              className={`${styles.notificationItem} ${!notification.read ? styles.unread : ''}`}
-            >
-              <div className={styles.notificationContent}>
-                <div className={styles.notificationHeader}>
-                  <div className={styles.userAvatar}>
-                    {getInitials(notification.from)}
-                  </div>
-                  <button
-                    className={styles.deleteButton}
-                    onClick={() => deleteNotification(notification._id)}
-                  >
-                    <FaTimes />
-                  </button>
-                </div>
-                <div 
-                  className={styles.notificationMessage}
-                  dangerouslySetInnerHTML={{ __html: formatMessage(notification.message) }}
-                />
-                <div className={styles.notificationFooter}>
-                  <div className={styles.notificationTime}>
-                    <FaClock /> {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
-                  </div>
-                  <div className={styles.notificationActions}>
-                    <button 
-                      className={styles.joinContestButton}
-                      onClick={() => handleJoinContest(notification.contestCode)}
-                    >
-                      JOIN CONTEST
-                    </button>
-                    <button 
-                      className={styles.copyCodeButton}
-                      onClick={() => copyToClipboard(notification.contestCode)}
-                    >
-                      COPY CODE
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-
   return (
     <>
        <Navbar/>
@@ -395,7 +364,43 @@ const Mainboard = () => {
                   <FaTimes />
                 </button>
               </div>
-              {renderNotifications()}
+              {notifications.length === 0 ? (
+                <p className={styles.noNotifications}>You're all caught up!</p>
+              ) : (
+                <ul className={styles.notificationList}>
+                  {notifications.map((notification) => (
+                    <li 
+                      key={notification._id} 
+                      className={styles.notificationItem}
+                    >
+                      <div className={styles.notificationContent}>
+                        <div className={styles.notificationHeader}>
+                          <div className={styles.profilePhoto}>
+                            {getInitials(notification.senderName || notification.senderEmail || 'U')}
+                          </div>
+                          <div className={styles.notificationMessage}>
+                            {notification.senderName || 
+                              notification.senderEmail} has invited you to join the contest
+                          </div>
+                        </div>
+                        <div className={styles.contestInfo}>
+                          <div className={styles.contestCode}>
+                            Code: <span>{notification.contestCode}</span>
+                          </div>
+                        </div>
+                        <div className={styles.notificationFooter}>
+                          <div className={styles.notificationTime}>
+                            <FaClock /> {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                          </div>
+                          <button onClick={() => copyToClipboard(notification.contestCode)} className={styles.joinContestButton}>
+                            COPY CODE
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         )}
