@@ -21,17 +21,33 @@ app.use(cors());
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 
-// Update MongoDB connection configuration
+// Update MongoDB connection configuration with additional options
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://codecraft_admin:t6xiITkFGLEjsAwa@cluster0.pwpdn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-
-// Replace the existing mongoose.connect with this:
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
+    retryWrites: true,
+    ssl: true,
+    tlsAllowInvalidCertificates: true, // Only use in development
+    tlsAllowInvalidHostnames: true, // Only use in development
 })
+.then(() => {
+    console.log('Connected to MongoDB Atlas successfully');
+})
+.catch(err => {
+    console.error('MongoDB connection error:', err);
+    // Add more detailed error logging
+    if (err.name === 'MongooseServerSelectionError') {
+        console.error('Connection details:', {
+            uri: MONGODB_URI.replace(/\/\/.*@/, '//***:***@'), // Hide credentials
+            error: err.message
+        });
+    }
+});
+
   
 .then(() => {
     console.log('Connected to MongoDB Atlas successfully');
