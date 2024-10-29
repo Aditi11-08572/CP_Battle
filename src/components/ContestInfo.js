@@ -88,7 +88,7 @@ const ContestInfo = () => {
           setContestStatus(newStatus);
         }
       }
-    }, 60000); // Check every minute
+    }, 1000); // Check every second
 
     return () => clearInterval(intervalId);
   }, [contestInfo, contestStatus]);
