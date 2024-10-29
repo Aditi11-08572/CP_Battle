@@ -28,7 +28,7 @@ const EmailVerification = () => {
 
             setIsOtpSending(true);
             try {
-                const response = await fetch('http://localhost:5000/api/auth/send-otp', {
+                const response = await fetch('https://codecraft-contest1.onrender.com/api/auth/send-otp', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email })
@@ -64,7 +64,7 @@ const EmailVerification = () => {
         e.preventDefault();
         try {
             console.log('Attempting to verify OTP for:', email, 'OTP:', otp);
-            const response = await axios.post('http://localhost:5000/api/auth/verify-otp', { email, otp });
+            const response = await axios.post('https://codecraft-contest1.onrender.com/api/auth/verify-otp', { email, otp });
             console.log('Verify OTP response:', response.data);
             if (response.data.message === 'OTP verified successfully') {
                 showAlert('Email verified successfully!', 'success');
@@ -81,7 +81,7 @@ const EmailVerification = () => {
     const handleCreateAccount = async () => {
         try {
             console.log('Attempting to create account for:', email);
-            const response = await axios.post('http://localhost:5000/api/auth/signup', { name, email, password, codeforcesId });
+            const response = await axios.post('https://codecraft-contest1.onrender.com/api/auth/signup', { name, email, password, codeforcesId });
             console.log('Signup response:', response.data);
             if (response.data.message === 'User registered successfully') {
                 setSignupSuccess(true);
