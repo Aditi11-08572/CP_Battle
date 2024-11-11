@@ -50,6 +50,15 @@ const About = () => {
       social: [
         { icon: faLinkedinIn, link: "https://www.linkedin.com/in/ironman-marvel-28355925b/" }
       ]
+    },
+    {
+      name: "Rohit Shinde",
+      job: "Software Tester",
+      about: "Excited to Explore new things",
+      image: "Bacchi.jpg",
+      topImage: "https://i.imgur.com/vG9oi4t.jpg",
+      whatsapp: "918591711567",
+     
     }
   ];
 
