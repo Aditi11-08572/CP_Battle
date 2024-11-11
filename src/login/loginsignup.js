@@ -190,7 +190,7 @@ const LoginSignup = () => {
                 </div>
             </motion.div>
 
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation - will only be visible on mobile due to CSS */}
             <div className={styles['mobile-nav']}>
                 <motion.button
                     className={!isActive ? styles.active : ''}
