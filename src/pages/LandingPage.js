@@ -234,6 +234,162 @@ yourJourney.compete();`;
   );
 };
 
-// Additional components will be in part 2...
+const FeatureCard = ({ icon, title, description, color, index, isActive }) => {
+  return (
+    <motion.div 
+      className={`${styles.featureCard} ${isActive ? styles.activeFeature : ''}`}
+      style={{ '--feature-color': color }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ scale: 1.05, y: -5 }}
+    >
+      <div className={styles.featureIcon}>{icon}</div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <div className={styles.featureGlow} />
+    </motion.div>
+  );
+};
+
+const StatsSection = () => {
+  const stats = [
+    { icon: <FaUsers />, number: "10K+", label: "Active Users" },
+    { icon: <FaTrophy />, number: "5K+", label: "Contests Hosted" },
+    { icon: <FaBrain />, number: "1M+", label: "Problems Solved" },
+    { icon: <FaRocket />, number: "100+", label: "Countries Reached" }
+  ];
+
+  return (
+    <motion.section 
+      className={styles.statsSection}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+    >
+      <div className={styles.statsContent}>
+        <motion.h2 
+          className={styles.sectionTitle}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Our Global <span className={styles.gradientText}>Impact</span>
+        </motion.h2>
+        
+        <div className={styles.statsGrid}>
+          {stats.map((stat, index) => (
+            <StatCard key={index} {...stat} index={index} />
+          ))}
+        </div>
+      </div>
+      <div className={styles.statsBackground} />
+    </motion.section>
+  );
+};
+
+const StatCard = ({ icon, number, label, index }) => {
+  const [isInView, setIsInView] = useState(false);
+
+  return (
+    <motion.div 
+      className={styles.statCard}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.1 }}
+      onViewportEnter={() => setIsInView(true)}
+    >
+      <div className={styles.statIcon}>{icon}</div>
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+      >
+        {number}
+      </motion.h3>
+      <p>{label}</p>
+    </motion.div>
+  );
+};
+
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      name: "Alex Chen",
+      role: "Competitive Programmer",
+      text: "CodeCraft transformed my competitive programming journey. The custom contests feature is revolutionary!"
+    },
+    {
+      name: "Sarah Johnson",
+      role: "Software Engineer",
+      text: "The real-time rankings and community features make practicing algorithms fun and engaging."
+    },
+    {
+      name: "Mike Zhang",
+      role: "CS Student",
+      text: "Best platform for improving problem-solving skills with friends. Highly recommended!"
+    }
+  ];
+
+  return (
+    <motion.section 
+      className={styles.testimonialsSection}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+    >
+      <h2 className={styles.sectionTitle}>
+        What Our <span className={styles.gradientText}>Users Say</span>
+      </h2>
+      
+      <div className={styles.testimonialGrid}>
+        {testimonials.map((testimonial, index) => (
+          <TestimonialCard key={index} {...testimonial} index={index} />
+        ))}
+      </div>
+    </motion.section>
+  );
+};
+
+const TestimonialCard = ({ name, role, text, index }) => (
+  <motion.div 
+    className={styles.testimonialCard}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: index * 0.1 }}
+    whileHover={{ y: -10 }}
+  >
+    <div className={styles.testimonialContent}>
+      <div className={styles.quoteIcon}>"</div>
+      <p>{text}</p>
+      <div className={styles.testimonialAuthor}>
+        <div className={styles.authorInfo}>
+          <h4>{name}</h4>
+          <span>{role}</span>
+        </div>
+      </div>
+    </div>
+    <div className={styles.testimonialGlow} />
+  </motion.div>
+);
+
+const Footer = () => {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.footerContent}>
+        <div className={styles.footerMain}>
+          <div className={styles.footerBrand}>
+            <h3 className={styles.gradientText}>CodeCraft</h3>
+            <p>Empowering competitive programmers worldwide</p>
+          </div>
+        </div>
+        <div className={styles.footerBottom}>
+          <p>© 2024 CodeCraft. All rights reserved.</p>
+        </div>
+      </div>
+      <div className={styles.footerGlow} />
+    </footer>
+  );
+};
 
 export default LandingPage;
