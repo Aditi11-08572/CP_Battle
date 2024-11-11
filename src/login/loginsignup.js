@@ -117,7 +117,7 @@ const LoginSignup = () => {
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaLinkedinIn /></motion.a>
                         </div> */}
 
-                        <span color='white'>or use your email for registration</span>
+                        <span color='white'>Use your email for registration</span>
                         <motion.div className={styles.inputGroup}>
                             <input type="text" name="name" placeholder="Name" required onChange={(e) => setName(e.target.value)} />
                             <input type="email" name="email" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
@@ -138,14 +138,14 @@ const LoginSignup = () => {
                 {/* Sign In Form */}
                 <div className={`${styles['form-container']} ${styles['sign-in']}`}>
                     <form onSubmit={handleLogin}>
-                        <h1 className={styles.sh}>Sign In</h1>
-                        <div className={styles['social-icons']}>
+                        <h1 color='white' className={styles.sh}>Sign In</h1>
+                        {/* <div className={styles['social-icons']}>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaFacebookF /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaGoogle /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaGithub /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaLinkedinIn /></motion.a>
-                        </div>
-                        <span>or use your email password</span>
+                        </div> */}
+                        <span>Use email password</span>
                         <input type="email" name="email" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
                         <input type="password" name="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
                         <Link to="/forgot-password" className={styles.forgotPassword}>Forgot your password?</Link>
@@ -163,7 +163,7 @@ const LoginSignup = () => {
                 <div className={styles['toggle-container']}>
                     <div className={styles.toggle}>
                         <div className={`${styles['toggle-panel']} ${styles['toggle-left']}`}>
-                            <h1 className={styles.sh}>Welcome Back!</h1>
+                            <h1  color='white' className={styles.sh}>Welcome Back!</h1>
                             <p>Enter your personal details to use all of site features</p>
                             <motion.button 
                                 className={styles.hidden}
@@ -175,7 +175,7 @@ const LoginSignup = () => {
                             </motion.button>
                         </div>
                         <div className={`${styles['toggle-panel']} ${styles['toggle-right']}`}>
-                            <h1 className={styles.sh}>Hello, Friend!</h1>
+                            <h1  color='white'  className={styles.sh}>Hello, Friend!</h1>
                             <p>Register with your personal details to use all of site features</p>
                             <motion.button 
                                 className={styles.hidden}
