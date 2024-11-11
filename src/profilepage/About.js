@@ -8,7 +8,7 @@ import styles from './About.module.css';
 
 const About = () => {
   const [headingText, setHeadingText] = useState('');
-  const fullHeading = 'MEEET OUR TEAM';
+  const fullHeading = 'MEET OUR TEAM';
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -58,16 +58,16 @@ const About = () => {
       image: "Bacchi.jpg",
       topImage: "background_bacchi.jpg",
       whatsapp: "918591711567",
-     
+      social: [] // Add an empty array if there are no social links
     }
   ];
 
   return (
-    <>  
-      <Navbar/>
+    <>
+      <Navbar />
       <div className={styles.container01}>
         <div className={styles.backgroundAnimation}></div>
-        <motion.div 
+        <motion.div
           className={styles.heading}
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -78,14 +78,14 @@ const About = () => {
 
         <AnimatePresence>
           {isLoaded && (
-            <motion.div 
+            <motion.div
               className={styles.cardsWrapper}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
               {teamMembers.map((member, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className={styles.card}
                   initial={{ opacity: 0, y: 50 }}
@@ -102,7 +102,7 @@ const About = () => {
                     <h1 className={styles.fullname}>{member.name}</h1>
                     <h3 className={styles.job}>{member.job}</h3>
                     <p className={styles.aboutMe}>{member.about}</p>
-                    <motion.button 
+                    <motion.button
                       className={styles.contactButton}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -110,15 +110,17 @@ const About = () => {
                     >
                       <FontAwesomeIcon icon={faWhatsapp} /> Contact me
                     </motion.button>
-                    <ul className={styles.socialIcons}>
-                      {member.social.map((social, socialIndex) => (
-                        <motion.li key={socialIndex} whileHover={{ y: -5, scale: 1.2 }}>
-                          <a href={social.link} target="_blank" rel="noopener noreferrer">
-                            <FontAwesomeIcon icon={social.icon} />
-                          </a>
-                        </motion.li>
-                      ))}
-                    </ul>
+                    {member.social && member.social.length > 0 && (
+                      <ul className={styles.socialIcons}>
+                        {member.social.map((social, socialIndex) => (
+                          <motion.li key={socialIndex} whileHover={{ y: -5, scale: 1.2 }}>
+                            <a href={social.link} target="_blank" rel="noopener noreferrer">
+                              <FontAwesomeIcon icon={social.icon} />
+                            </a>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </motion.div>
               ))}
