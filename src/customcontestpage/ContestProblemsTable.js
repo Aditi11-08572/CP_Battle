@@ -72,7 +72,7 @@ const ContestProblemsTable = () => {
           return;
         }
 
-        const response = await axios.get(`https://codecraft-contest1.onrender.com/api/user`, {
+        const response = await axios.get(`http://localhost:5000/api/user`, {
           params: { email: userEmail }
         });
 
@@ -159,7 +159,7 @@ const ContestProblemsTable = () => {
           return; // Keep using the hardcoded ID
         }
 
-        const response = await axios.get(`https://codecraft-contest1.onrender.com/api/user`, {
+        const response = await axios.get(`http://localhost:5000/api/user`, {
           params: { email: userEmail }
         });
 
@@ -279,7 +279,7 @@ const ContestProblemsTable = () => {
       }
 
       // Fetch the current user's rating
-      const userResponse = await axios.get(`https://codecraft-contest1.onrender.com/api/user`, {
+      const userResponse = await axios.get(`http://localhost:5000/api/user`, {
         params: { email: userEmail }
       });
 
@@ -316,7 +316,7 @@ const ContestProblemsTable = () => {
       };
 
       // Send the data to the server
-      const response = await axios.post('https://codecraft-contest1.onrender.com/api/contests/submit', contestData);
+      const response = await axios.post('http://localhost:5000/api/contests/submit', contestData);
 
       if (response.data.success) {
         setIsContestSubmitted(true);
