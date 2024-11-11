@@ -13,7 +13,7 @@ function Statistics() {
       try {
         // Fetch the user's data from your backend
         const userEmail = localStorage.getItem('userEmail');
-        const response = await axios.get(`http://localhost:5000/api/user/profile/${userEmail}`);
+        const response = await axios.get(`https://cp-battle.onrender.com/api/user/profile/${userEmail}`);
         const userData = response.data;
         setCodeforcesId(userData.codeforcesId);
 
