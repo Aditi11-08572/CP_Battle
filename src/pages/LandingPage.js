@@ -1,140 +1,181 @@
-import React, { useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaCode, FaTrophy, FaUsers, FaChartLine } from 'react-icons/fa';
+import { FaCode, FaTrophy, FaUsers, FaChartLine, FaGithub, FaGoogle } from 'react-icons/fa';
+import { BiCode } from 'react-icons/bi';
 import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true
-  });
+  const [isTyping, setIsTyping] = useState(true);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
+
+  const codeSnippet = `
+function CodeCraft() {
+  const passion = "coding";
+  const community = "growing";
+  const future = "bright";
+  
+  return success;
+}`;
+
+  const [displayedCode, setDisplayedCode] = useState('');
 
   useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.3
+    let index = 0;
+    const timer = setInterval(() => {
+      setDisplayedCode(codeSnippet.slice(0, index));
+      index++;
+      if (index > codeSnippet.length) {
+        setIsTyping(false);
+        clearInterval(timer);
       }
-    }
-  };
+    }, 50);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className={styles.landingContainer}>
+      <div className={styles.backgroundAnimation} />
+      
       <motion.div 
         className={styles.hero}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        style={{ opacity, y }}
       >
-        <motion.h1
-          initial={{ y: -50 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.8, type: "spring" }}
-        >
-          Welcome to CP Battle
-        </motion.h1>
-        <motion.p
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          Compete, Learn, and Master Competitive Programming
-        </motion.p>
         <motion.div 
-          className={styles.ctaButtons}
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
+          className={styles.heroContent}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          <Link to="/login" className={styles.primaryBtn}>
-            Get Started
-          </Link>
-          <Link to="/about" className={styles.secondaryBtn}>
-            Learn More
-          </Link>
-        </motion.div>
-      </motion.div>
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            Welcome to <span className={styles.gradient}>CodeCraft</span>
+          </motion.h1>
+          
+          <motion.p className={styles.subtitle}>
+            Where Competitive Programming Meets Community
+          </motion.p>
 
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={controls}
-        className={styles.features}
-      >
-        <motion.div variants={itemVariants} className={styles.featureCard}>
-          <FaCode className={styles.icon} />
-          <h3>Custom Contests</h3>
-          <p>Create and participate in personalized coding competitions</p>
-        </motion.div>
+          <div className={styles.codeEditor}>
+            <div className={styles.editorHeader}>
+              <span className={styles.dot}></span>
+              <span className={styles.dot}></span>
+              <span className={styles.dot}></span>
+            </div>
+            <pre className={styles.code}>
+              <code>{displayedCode}</code>
+              {isTyping && <span className={styles.cursor}>|</span>}
+            </pre>
+          </div>
 
-        <motion.div variants={itemVariants} className={styles.featureCard}>
-          <FaTrophy className={styles.icon} />
-          <h3>Real-time Rankings</h3>
-          <p>Track your progress and compete with others globally</p>
-        </motion.div>
-
-        <motion.div variants={itemVariants} className={styles.featureCard}>
-          <FaUsers className={styles.icon} />
-          <h3>Community</h3>
-          <p>Join a growing community of competitive programmers</p>
-        </motion.div>
-
-        <motion.div variants={itemVariants} className={styles.featureCard}>
-          <FaChartLine className={styles.icon} />
-          <h3>Performance Analytics</h3>
-          <p>Detailed insights into your coding performance</p>
+          <motion.div className={styles.ctaContainer}>
+            <Link to="/login" className={styles.primaryBtn}>
+              <span>Get Started</span>
+              <BiCode className={styles.btnIcon} />
+            </Link>
+            <div className={styles.authButtons}>
+              <button className={styles.githubBtn}>
+                <FaGithub /> Continue with GitHub
+              </button>
+              <button className={styles.googleBtn}>
+                <FaGoogle /> Continue with Google
+              </button>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
 
       <motion.div 
-        className={styles.statsSection}
-        initial={{ opacity: 0, y: 50 }}
-        animate={controls}
-        variants={{
-          visible: { opacity: 1, y: 0 }
-        }}
+        className={styles.featuresSection}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
       >
-        <div className={styles.statCard}>
-          <h4>1000+</h4>
-          <p>Active Users</p>
+        <h2 className={styles.sectionTitle}>Why Choose CodeCraft?</h2>
+        
+        <div className={styles.features}>
+          <FeatureCard 
+            icon={<FaUsers />}
+            title="Community-Driven"
+            description="Connect with fellow programmers, send friend requests, and get personalized suggestions."
+          />
+          <FeatureCard 
+            icon={<FaTrophy />}
+            title="Custom Contests"
+            description="Create private contests for your group and compete in real-time with friends."
+          />
+          <FeatureCard 
+            icon={<FaChartLine />}
+            title="Real-time Rankings"
+            description="Track your progress and see how you stack up against others instantly."
+          />
         </div>
-        <div className={styles.statCard}>
-          <h4>500+</h4>
-          <p>Contests Hosted</p>
-        </div>
-        <div className={styles.statCard}>
-          <h4>5000+</h4>
-          <p>Problems Solved</p>
+      </motion.div>
+
+      <motion.div 
+        className={styles.communitySection}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <div className={styles.communityContent}>
+          <h2>Join Our Growing Community</h2>
+          <div className={styles.stats}>
+            <StatCard number="10K+" label="Active Users" />
+            <StatCard number="5K+" label="Daily Contests" />
+            <StatCard number="1M+" label="Problems Solved" />
+          </div>
         </div>
       </motion.div>
 
       <footer className={styles.footer}>
-        <p>© 2024 CP Battle. All rights reserved.</p>
+        <div className={styles.footerContent}>
+          <div className={styles.footerSection}>
+            <h3>CodeCraft</h3>
+            <p>Empowering competitive programmers worldwide</p>
+          </div>
+          <div className={styles.footerLinks}>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+        <div className={styles.footerBottom}>
+          <p>© 2024 CodeCraft. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
 };
+
+const FeatureCard = ({ icon, title, description }) => (
+  <motion.div 
+    className={styles.featureCard}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <div className={styles.iconWrapper}>{icon}</div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </motion.div>
+);
+
+const StatCard = ({ number, label }) => (
+  <motion.div 
+    className={styles.statCard}
+    whileHover={{ scale: 1.1 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  >
+    <h3>{number}</h3>
+    <p>{label}</p>
+  </motion.div>
+);
 
 export default LandingPage; 
