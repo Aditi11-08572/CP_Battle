@@ -312,7 +312,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     font-size: 24px;
 
-    color:black;
+    color:white;
 }
 
 .container01 p {
@@ -400,4 +400,8 @@ h1 {
 .container01.active .sign-in form {
     opacity: 0;
     visibility: hidden;
+}
+
+.sh{
+    color:white;
 }
