@@ -6,7 +6,7 @@ import RecentActivity from './RecentActivity';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Profile from "./Profile";
-import "./Dashboard.module.css";
+import "./Dashboard.module.css"
 import { UserProvider } from './UserContext'; 
 
 const Dashboard = () => {
