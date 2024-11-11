@@ -136,7 +136,7 @@ yourJourney.compete();`;
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className={styles.title}>
+            <h1 className={styles.gradientText}>
               Welcome to <span className={styles.gradientText}>CodeCraft</span>
             </h1>
             <div className={styles.titleDecoration} />
