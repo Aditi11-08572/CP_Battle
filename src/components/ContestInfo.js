@@ -28,7 +28,7 @@ const ContestInfo = () => {
 
       try {
         const userEmail = localStorage.getItem('userEmail');
-        const response = await axios.get(`http://localhost:5000/api/contests/${contestCode}`, {
+        const response = await axios.get(`https://cp-battle.onrender.com/api/contests/${contestCode}`, {
           params: { userEmail }
         });
         const data = response.data;
@@ -46,7 +46,7 @@ const ContestInfo = () => {
         if (data.questions === undefined || !Array.isArray(data.questions)) {
           // Fetch questions if they're not included in the initial contest data
           try {
-            const questionsResponse = await axios.get(`http://localhost:5000/api/contests/${contestCode}/questions`);
+            const questionsResponse = await axios.get(`https://cp-battle.onrender.com/api/contests/${contestCode}/questions`);
             setContestInfo(prevInfo => ({...prevInfo, questions: questionsResponse.data}));
           } catch (error) {
             console.error('Error fetching contest questions:', error);
@@ -67,7 +67,7 @@ const ContestInfo = () => {
       try {
         const userHandle = localStorage.getItem('codeforcesHandle');
         if (userHandle && contestInfo) {
-          const response = await axios.get(`http://localhost:5000/api/contests/${contestInfo._id}/check-submission`, {
+          const response = await axios.get(`https://cp-battle.onrender.com/api/contests/${contestInfo._id}/check-submission`, {
             params: { userHandle }
           });
           setHasSubmitted(response.data.hasSubmitted);
@@ -110,7 +110,7 @@ const ContestInfo = () => {
     setIsLoading(true);
     try {
       const userEmail = localStorage.getItem('userEmail');
-      const response = await axios.post('http://localhost:5000/api/register-contest', {
+      const response = await axios.post('https://cp-battle.onrender.com/api/register-contest', {
         userEmail,
         contestId: contestInfo._id
       });
