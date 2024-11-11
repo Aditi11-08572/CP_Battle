@@ -36,7 +36,7 @@ const CustomNavbar = () => {
   const handleLogout = () => {
     setUserData(null);
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/landing');
   };
 
   return (

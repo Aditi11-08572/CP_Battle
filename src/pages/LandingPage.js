@@ -1,56 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaCode, FaTrophy, FaUsers, FaChartLine, FaRocket, FaBrain } from 'react-icons/fa';
+import { FaCode, FaTrophy, FaUsers, FaChartLine, FaRocket, FaBrain, FaLightbulb, FaCrown } from 'react-icons/fa';
 import { BiCode } from 'react-icons/bi';
+import { RiAwardLine, RiTeamLine, RiRocketLine } from 'react-icons/ri';
 import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
   const [isTyping, setIsTyping] = useState(true);
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
   const [activeFeature, setActiveFeature] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll();
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, -100]));
+  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.5], [1, 0]));
 
   const features = [
     {
       title: "Custom Contests",
-      description: "Create private coding battles and compete with friends in real-time",
-      icon: <FaCode />,
-      color: "#00ff88"
+      description: "Create private coding battles tailored to your group's skill level",
+      icon: <FaCrown />,
+      color: "#00fff2"
     },
     {
       title: "Real-time Rankings",
-      description: "Watch live as rankings update with every submission",
-      icon: <FaChartLine />,
-      color: "#00ffff"
+      description: "Experience the thrill of live competition with instant updates",
+      icon: <RiAwardLine />,
+      color: "#ff00d4"
     },
     {
       title: "Community Driven",
-      description: "Connect with fellow programmers and grow together",
-      icon: <FaUsers />,
-      color: "#ff00ff"
+      description: "Join a thriving ecosystem of passionate programmers",
+      icon: <RiTeamLine />,
+      color: "#00ff88"
+    },
+    {
+      title: "Advanced Analytics",
+      description: "Track your progress with detailed performance insights",
+      icon: <RiRocketLine />,
+      color: "#ff8800"
     }
   ];
 
   const codeSnippet = `
 class CodeCraft {
   constructor() {
-    this.passion = "infinite";
-    this.skills = ["algorithms", "data structures"];
-    this.community = "growing";
+    this.passion = "∞";
+    this.skills = ["DSA", "CP", "Problem Solving"];
+    this.mode = "competitive";
   }
 
   async compete() {
-    while(true) {
+    while(this.passion) {
       await this.solve();
       this.learn();
-      this.improve();
+      this.grow();
+      // Repeat infinitely
     }
   }
 }
 
-// Start your journey now!`;
+// Your coding journey begins here
+const yourJourney = new CodeCraft();
+yourJourney.compete();`;
 
   const [displayedCode, setDisplayedCode] = useState('');
 
@@ -63,7 +76,7 @@ class CodeCraft {
         setIsTyping(false);
         clearInterval(timer);
       }
-    }, 50);
+    }, 40);
 
     return () => clearInterval(timer);
   }, []);
@@ -75,68 +88,100 @@ class CodeCraft {
     return () => clearInterval(interval);
   }, []);
 
+  const handleMouseMove = (e) => {
+    if (heroRef.current) {
+      const rect = heroRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: (e.clientX - rect.left) / rect.width,
+        y: (e.clientY - rect.top) / rect.height,
+      });
+    }
+  };
+
   return (
     <div className={styles.landingContainer}>
-      <div className={styles.backgroundGlow} />
-      <div className={styles.backgroundGrid} />
+      <div className={styles.particlesContainer}>
+        {[...Array(50)].map((_, i) => (
+          <div key={i} className={styles.particle} />
+        ))}
+      </div>
       
       <motion.div 
+        ref={heroRef}
         className={styles.hero}
-        style={{ opacity, y }}
+        onMouseMove={handleMouseMove}
+        style={{ opacity }}
       >
-        <motion.div 
-          className={styles.heroContent}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div className={styles.glowingTitle}>
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              Welcome to <span className={styles.gradientText}>CodeCraft</span>
-            </motion.h1>
-            
-            <motion.div 
-              className={styles.glowOrb}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 0.8, 0.5],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </motion.div>
-          
-          <motion.p 
-            className={styles.subtitle}
+        <div className={styles.glowingOrbs}>
+          <motion.div 
+            className={styles.orb}
+            animate={{
+              x: mousePosition.x * 30,
+              y: mousePosition.y * 30,
+            }}
+          />
+          <motion.div 
+            className={styles.orb}
+            animate={{
+              x: mousePosition.x * -30,
+              y: mousePosition.y * -30,
+            }}
+          />
+        </div>
+
+        <motion.div className={styles.heroContent}>
+          <motion.div 
+            className={styles.titleContainer}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className={styles.title}>
+              Welcome to <span className={styles.gradientText}>CodeCraft</span>
+            </h1>
+            <div className={styles.titleDecoration} />
+          </motion.div>
+
+          <motion.p 
+            className={styles.subtitle}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Where Competitive Programming Meets Community
+            Where Competitive Programming Meets Innovation
           </motion.p>
 
-          <div className={styles.codeEditorWrapper}>
-            <div className={styles.codeEditor}>
+          <div className={styles.codeEditorContainer}>
+            <motion.div 
+              className={styles.codeEditor}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+            >
               <div className={styles.editorHeader}>
                 <div className={styles.editorControls}>
-                  <span className={styles.dot}></span>
-                  <span className={styles.dot}></span>
-                  <span className={styles.dot}></span>
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
                 </div>
-                <span className={styles.fileName}>codecraft.js</span>
+                <span className={styles.fileName}>journey.js</span>
+                <div className={styles.editorActions}>
+                  <span className={styles.action}>JavaScript</span>
+                  <span className={styles.action}>UTF-8</span>
+                </div>
               </div>
-              <pre className={styles.code}>
-                <code>{displayedCode}</code>
-                {isTyping && <span className={styles.cursor}>|</span>}
-              </pre>
-            </div>
+              <div className={styles.editorContent}>
+                <div className={styles.lineNumbers}>
+                  {displayedCode.split('\n').map((_, i) => (
+                    <span key={i}>{i + 1}</span>
+                  ))}
+                </div>
+                <pre className={styles.code}>
+                  <code>{displayedCode}</code>
+                  {isTyping && <span className={styles.cursor}>|</span>}
+                </pre>
+              </div>
+            </motion.div>
           </div>
 
           <motion.div 
@@ -146,94 +191,49 @@ class CodeCraft {
             transition={{ delay: 1 }}
           >
             <Link to="/login" className={styles.primaryBtn}>
-              <span>Start Coding</span>
+              <span>Begin Your Journey</span>
               <BiCode className={styles.btnIcon} />
+              <div className={styles.btnGlow} />
             </Link>
           </motion.div>
         </motion.div>
       </motion.div>
 
-      <motion.div 
-        className={styles.featuresSection}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <h2 className={styles.sectionTitle}>
-          <span className={styles.gradientText}>Features</span> that set us apart
-        </h2>
+      {/* Features Section */}
+      <motion.section className={styles.featuresSection}>
+        <motion.h2 
+          className={styles.sectionTitle}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className={styles.gradientText}>Revolutionary</span> Features
+        </motion.h2>
         
-        <div className={styles.features}>
-          <AnimatePresence mode="wait">
-            {features.map((feature, index) => (
-              <FeatureCard 
-                key={feature.title}
-                {...feature}
-                isActive={index === activeFeature}
-              />
-            ))}
-          </AnimatePresence>
+        <div className={styles.featuresGrid}>
+          {features.map((feature, index) => (
+            <FeatureCard 
+              key={feature.title}
+              {...feature}
+              index={index}
+              isActive={index === activeFeature}
+            />
+          ))}
         </div>
-      </motion.div>
+      </motion.section>
 
-      <motion.div 
-        className={styles.statsSection}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
-        <div className={styles.statsContent}>
-          <h2 className={styles.gradientText}>Our Impact</h2>
-          <div className={styles.statsGrid}>
-            <StatCard icon={<FaUsers />} number="10K+" label="Active Users" />
-            <StatCard icon={<FaTrophy />} number="5K+" label="Contests Hosted" />
-            <StatCard icon={<FaBrain />} number="1M+" label="Problems Solved" />
-            <StatCard icon={<FaRocket />} number="100+" label="Countries Reached" />
-          </div>
-        </div>
-      </motion.div>
+      {/* Stats Section */}
+      <StatsSection />
 
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerBrand}>
-            <h3 className={styles.gradientText}>CodeCraft</h3>
-            <p>Empowering competitive programmers worldwide</p>
-          </div>
-          <div className={styles.footerBottom}>
-            <p>© 2024 CodeCraft. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
 
-const FeatureCard = ({ icon, title, description, color, isActive }) => (
-  <motion.div 
-    className={`${styles.featureCard} ${isActive ? styles.activeFeature : ''}`}
-    style={{ '--feature-color': color }}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-  >
-    <div className={styles.iconWrapper}>{icon}</div>
-    <h3>{title}</h3>
-    <p>{description}</p>
-  </motion.div>
-);
-
-const StatCard = ({ icon, number, label }) => (
-  <motion.div 
-    className={styles.statCard}
-    whileHover={{ scale: 1.1 }}
-    transition={{ type: "spring", stiffness: 300 }}
-  >
-    <div className={styles.statIcon}>{icon}</div>
-    <h3>{number}</h3>
-    <p>{label}</p>
-  </motion.div>
-);
+// Additional components will be in part 2...
 
 export default LandingPage;
