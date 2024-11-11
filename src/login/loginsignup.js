@@ -22,22 +22,17 @@ const LoginSignup = () => {
         if (token) {
             navigate('/');
         }
-
-        const container = document.getElementById('container');
-        const registerBtn = document.getElementById('register');
-        const loginBtn = document.getElementById('login');
-
-        const addActive = () => setIsActive(true);
-        const removeActive = () => setIsActive(false);
-
-        registerBtn.addEventListener('click', addActive);
-        loginBtn.addEventListener('click', removeActive);
-
-        return () => {
-            registerBtn.removeEventListener('click', addActive);
-            loginBtn.removeEventListener('click', removeActive);
-        };
     }, [navigate]);
+
+    const handleRegisterClick = () => {
+        setIsActive(true);
+        setIsLogin(false);
+    };
+
+    const handleLoginClick = () => {
+        setIsActive(false);
+        setIsLogin(true);
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -92,10 +87,6 @@ const LoginSignup = () => {
                 showAlert('An error occurred during signup', 'error');
             }
         }
-    };
-
-    const toggleForm = () => {
-        setIsLogin(!isLogin);
     };
 
     return (
@@ -239,7 +230,7 @@ const LoginSignup = () => {
                                 </p>
                                 <motion.button 
                                     className={styles.ghostButton}
-                                    onClick={() => setIsActive(!isActive)}
+                                    onClick={isActive ? handleLoginClick : handleRegisterClick}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
