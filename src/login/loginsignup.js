@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import styles from './loginsignup.module.css';
+import styles from './loginsignup.module.css'; // Changed import to use CSS module
 import axios from 'axios';
 import AlertPopup from '../components/AlertPopup';
-import { FiMail, FiLock, FiUser, FiCode } from 'react-icons/fi';
 
 const LoginSignup = () => {
     const navigate = useNavigate();
@@ -13,7 +11,7 @@ const LoginSignup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [codeforcesId, setCodeforcesId] = useState('');
+    const [codeforcesId, setCodeforcesId] = useState(''); // New state for Codeforces ID
     const [error, setError] = useState('');
     const [alert, setAlert] = useState({ message: '', type: '', isVisible: false });
 
@@ -22,17 +20,22 @@ const LoginSignup = () => {
         if (token) {
             navigate('/');
         }
+
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+
+        const addActive = () => setIsActive(true);
+        const removeActive = () => setIsActive(false);
+
+        registerBtn.addEventListener('click', addActive);
+        loginBtn.addEventListener('click', removeActive);
+
+        return () => {
+            registerBtn.removeEventListener('click', addActive);
+            loginBtn.removeEventListener('click', removeActive);
+        };
     }, [navigate]);
-
-    const handleRegisterClick = () => {
-        setIsActive(true);
-        setIsLogin(false);
-    };
-
-    const handleLoginClick = () => {
-        setIsActive(false);
-        setIsLogin(true);
-    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -59,11 +62,11 @@ const LoginSignup = () => {
                 localStorage.setItem('userEmail', email);
                 navigate('/');
             } else {
-                showAlert(data.message, 'error');
+                showAlert(data.message, 'error'); // Changed from alert() to showAlert()
             }
         } catch (error) {
             console.error('Login error:', error);
-            showAlert('An error occurred during login', 'error');
+            showAlert('An error occurred during login', 'error'); // Changed from alert() to showAlert()
         }
     };
 
@@ -89,165 +92,54 @@ const LoginSignup = () => {
         }
     };
 
+    const toggleForm = () => {
+        setIsLogin(!isLogin);
+    };
+
     return (
         <div className={styles.body01}>
-            <div className={styles.particles}>
-                {[...Array(20)].map((_, i) => (
-                    <div key={i} className={styles.particle} />
-                ))}
-            </div>
-            
-            <motion.div 
-                className={`${styles.container01} ${isActive ? styles.active : ''}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                <div className={styles.formWrapper}>
-                    <motion.div 
-                        className={`${styles['form-container']} ${styles['sign-up']}`}
-                        initial={{ x: 300, opacity: 0 }}
-                        animate={{ x: isActive ? 0 : 300, opacity: isActive ? 1 : 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <form onSubmit={handleSignup}>
-                            <motion.h1 
-                                initial={{ y: -20 }}
-                                animate={{ y: 0 }}
-                                transition={{ delay: 0.1 }}
-                            >
-                                Create Account
-                            </motion.h1>
-                            
-                            <div className={styles.inputGroup}>
-                                <FiUser className={styles.inputIcon} />
-                                <input 
-                                    type="text" 
-                                    name="name" 
-                                    placeholder="Name" 
-                                    required 
-                                    onChange={(e) => setName(e.target.value)} 
-                                />
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <FiMail className={styles.inputIcon} />
-                                <input 
-                                    type="email" 
-                                    name="email" 
-                                    placeholder="Email" 
-                                    required 
-                                    onChange={(e) => setEmail(e.target.value)} 
-                                />
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <FiLock className={styles.inputIcon} />
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    placeholder="Password" 
-                                    required 
-                                    onChange={(e) => setPassword(e.target.value)} 
-                                />
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <FiCode className={styles.inputIcon} />
-                                <input 
-                                    type="text" 
-                                    name="codeforcesId" 
-                                    placeholder="Codeforces ID" 
-                                    required 
-                                    onChange={(e) => setCodeforcesId(e.target.value)} 
-                                />
-                            </div>
-
-                            {error && <p className={styles.error}>{error}</p>}
-                            
-                            <motion.button 
-                                type="submit"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                Sign Up
-                            </motion.button>
-                        </form>
-                    </motion.div>
-
-                    <motion.div 
-                        className={`${styles['form-container']} ${styles['sign-in']}`}
-                        initial={{ x: 0, opacity: 1 }}
-                        animate={{ x: isActive ? -300 : 0, opacity: isActive ? 0 : 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <form onSubmit={handleLogin}>
-                            <motion.h1
-                                initial={{ y: -20 }}
-                                animate={{ y: 0 }}
-                                transition={{ delay: 0.1 }}
-                            >
-                                Welcome Back
-                            </motion.h1>
-
-                            <div className={styles.inputGroup}>
-                                <FiMail className={styles.inputIcon} />
-                                <input type="email" name="email" placeholder="Email" required />
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <FiLock className={styles.inputIcon} />
-                                <input type="password" name="password" placeholder="Password" required />
-                            </div>
-
-                            <Link to="/forgot-password" className={styles.forgotPassword}>
-                                Forgot your password?
-                            </Link>
-
-                            <motion.button 
-                                type="submit"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                Sign In
-                            </motion.button>
-                        </form>
-                    </motion.div>
-
-                    <div className={styles.overlayContainer}>
-                        <motion.div 
-                            className={styles.overlay}
-                            animate={{ x: isActive ? '100%' : '0%' }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <div className={styles.overlayPanel}>
-                                <h2>{isActive ? 'Already have an account?' : 'New here?'}</h2>
-                                <p>
-                                    {isActive 
-                                        ? 'Sign in to continue your journey with us'
-                                        : 'Join us and start your competitive programming journey'
-                                    }
-                                </p>
-                                <motion.button 
-                                    className={styles.ghostButton}
-                                    onClick={isActive ? handleLoginClick : handleRegisterClick}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    {isActive ? 'Sign In' : 'Sign Up'}
-                                </motion.button>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </motion.div>
-            
             <AlertPopup
                 message={alert.message}
                 type={alert.type}
                 isVisible={alert.isVisible}
                 onClose={() => setAlert({ ...alert, isVisible: false })}
             />
+            <div className={${styles.container01} ${isActive ? styles.active : ''}} id="container">
+                <div className={${styles['form-container']} ${styles['sign-up']}}>
+                    <form onSubmit={handleSignup}>
+                        <h1>Create Account</h1>
+                        <input type="text" name="name" placeholder="Name" required onChange={(e) => setName(e.target.value)} />
+                        <input type="email" name="email" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
+                        <input type="password" name="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+                        <input type="text" name="codeforcesId" placeholder="Codeforces ID" required onChange={(e) => setCodeforcesId(e.target.value)} />
+                        {error && <p className={styles.error}>{error}</p>}
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+                <div className={${styles['form-container']} ${styles['sign-in']}}>
+                    <form onSubmit={handleLogin}>
+                        <h1>Sign In</h1>
+                        <input type="email" name="email" placeholder="Email" required />
+                        <input type="password" name="password" placeholder="Password" required />
+                        <Link to="/forgot-password">Forgot your password?</Link>
+                        <button type="submit">Sign In</button>
+                    </form>
+                </div>
+                <div className={styles['toggle-container']}>
+                    <div className={styles.toggle}>
+                        <div className={${styles['toggle-panel']} ${styles['toggle-left']}}>
+                            <h1>Welcome Back!</h1>
+                            <p>Enter your personal details to use all of site features</p>
+                            <button className={styles.hidden} id="login">Sign In</button>
+                        </div>
+                        <div className={${styles['toggle-panel']} ${styles['toggle-right']}}>
+                            <h1>Hello, Friend!</h1>
+                            <p>Register with your personal details to use all of site features</p>
+                            <button className={styles.hidden} id="register">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

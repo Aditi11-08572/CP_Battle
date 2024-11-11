@@ -1,207 +1,217 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #00E1B9;
-  --secondary: #4158D0;
-  --accent: #8A2BE2;
-  --dark: #0A0B1E;
-  --card-bg: rgba(16, 18, 27, 0.4);
-  --input-bg: rgba(255, 255, 255, 0.03);
-  --success: #00E1B9;
-  --error: #FF3CAC;
+  --primary: #4158D0;
+  --secondary: #C850C0;
+  --accent: #FFCC70;
+  --dark-bg: #0F172A;
+  --light-bg: #1E293B;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --input-bg: rgba(255, 255, 255, 0.07);
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 .body01 {
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--dark), #1a1a3f);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  font-family: 'Poppins', sans-serif;
-  position: relative;
-  overflow: hidden;
+    background: linear-gradient(135deg, var(--dark-bg), var(--light-bg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Particle Animation */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+/* Background Animation */
+.body01::before,
+.body01::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: floatGlow 15s infinite alternate;
 }
 
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: var(--primary);
-  border-radius: 50%;
-  animation: particleFloat 15s infinite linear;
+.body01::before {
+    background: var(--primary);
+    top: -150px;
+    left: -150px;
 }
 
-@keyframes particleFloat {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) translateX(100vw);
-    opacity: 0;
-  }
+.body01::after {
+    background: var(--secondary);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -7.5s;
 }
 
-/* Container Styling */
+@keyframes floatGlow {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    50% { transform: translate(50px, 50px) scale(1.2); opacity: 0.5; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+}
+
 .container01 {
-  width: 100%;
-  max-width: 1000px;
-  min-height: 600px;
-  background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
 }
 
-.formWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
+.container01 p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
 }
 
-/* Input Group Styling */
-.inputGroup {
-  position: relative;
-  margin-bottom: 1.5rem;
+.container01 a {
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+    transition: all 0.3s ease;
 }
 
-.inputIcon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--primary);
-  font-size: 1.2rem;
+.container01 a:hover {
+    color: var(--secondary);
+    transform: translateY(-2px);
 }
 
-.inputGroup input {
-  width: 100%;
-  padding: 1rem 1rem 1rem 3rem;
-  background: var(--input-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: white;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+.container01 button {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-primary);
+    font-size: 12px;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.inputGroup input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 20px rgba(0, 225, 185, 0.1);
-  transform: translateY(-2px);
+.container01 button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
 }
 
-/* Overlay Container */
-.overlayContainer {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
+.container01 button:hover::before {
+    left: 100%;
 }
 
-.overlay {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  position: relative;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+.container01 button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.overlayPanel {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+.container01 button.hidden {
+    background: transparent;
+    border: 2px solid var(--text-primary);
 }
 
-.ghostButton {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  font-weight: 600;
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.container01 form {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
 }
 
-.ghostButton:hover {
-  background: white;
-  color: var(--primary);
+.container01 input {
+    background: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    font-size: 13px;
+    border-radius: 8px;
+    outline: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
-/* Form Container */
-.form-container {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  padding: 3rem;
-  transition: all 0.6s ease-in-out;
+.container01 input:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 15px rgba(200, 80, 192, 0.1);
+    transform: translateY(-2px);
 }
 
-.sign-in {
-  left: 0;
-  z-index: 2;
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
 }
 
-.sign-up {
-  left: 0;
-  z-index: 1;
-  opacity: 0;
+.toggle {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    height: 100%;
+    color: var(--text-primary);
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
 }
 
-/* Active States */
-.container01.active .sign-in {
-  transform: translateX(100%);
+.toggle-panel h1 {
+    color: var(--text-primary);
+    font-weight: 700;
+    margin: 0 0 20px;
 }
 
-.container01.active .sign-up {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  animation: show 0.6s;
+.error {
+    background: rgba(255, 60, 172, 0.1);
+    color: #FF3CAC;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #FF3CAC;
+    animation: shake 0.5s ease-in-out;
 }
 
-@keyframes show {
-  0%, 49.99% {
-    opacity: 0;
-    z-index: 1;
-  }
-  50%, 100% {
-    opacity: 1;
-    z-index: 5;
-  }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
 }
+
+/* Keep your existing animation classes and media queries */
