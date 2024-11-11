@@ -358,57 +358,38 @@ h1 {
         min-height: 600px;
         margin: 20px;
         width: 90%;
-    }
-
-    .toggle-container {
         position: relative;
-        left: 0;
-        width: 100%;
-        height: auto;
-        bottom: 0;
-        display: block;
     }
 
-    .toggle {
-        position: relative;
-        width: 100%;
-        left: 0;
-        height: auto;
-        padding: 20px 0;
-    }
-
-    .toggle-panel {
-        position: relative;
-        width: 100%;
-        height: auto;
-        padding: 20px;
-        display: none;
-    }
-
-    .sign-in, .sign-up {
+    .form-container {
         position: absolute;
         width: 100%;
-        left: 0;
         height: 100%;
-        padding: 20px;
+        transition: transform 0.6s ease-in-out;
     }
 
     .sign-in {
-        opacity: 1;
-        z-index: 2;
         transform: translateX(0);
+        opacity: 1;
+        z-index: 5;
     }
 
     .sign-up {
+        transform: translateX(100%);
         opacity: 0;
         z-index: 1;
-        transform: translateX(100%);
     }
 
-    /* Show active form */
+    /* Hide the toggle container on mobile */
+    .toggle-container {
+        display: none;
+    }
+
+    /* Active states for mobile */
     .container01.active .sign-in {
         transform: translateX(-100%);
         opacity: 0;
+        z-index: 1;
     }
 
     .container01.active .sign-up {
@@ -417,21 +398,25 @@ h1 {
         z-index: 5;
     }
 
-    /* Mobile navigation buttons */
+    /* Mobile navigation */
     .mobile-nav {
+        position: absolute;
+        bottom: -60px;
+        left: 0;
+        width: 100%;
         display: flex;
         justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
-        width: 100%;
+        gap: 20px;
+        padding: 10px;
     }
 
     .mobile-nav button {
+        padding: 8px 24px;
+        border-radius: 20px;
         background: transparent;
         border: 2px solid var(--text-primary);
         color: var(--text-primary);
-        padding: 10px 20px;
-        border-radius: 20px;
+        font-size: 14px;
         cursor: pointer;
         transition: all 0.3s ease;
     }
@@ -439,6 +424,59 @@ h1 {
     .mobile-nav button.active {
         background: linear-gradient(135deg, var(--primary), var(--secondary));
         border: none;
+        color: white;
+    }
+
+    /* Form adjustments for mobile */
+    .container01 form {
+        padding: 0 30px;
+    }
+
+    .social-icons {
+        margin: 15px 0;
+    }
+
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+    }
+
+    input {
+        margin: 6px 0;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    span {
+        font-size: 13px;
+    }
+
+    .forgotPassword {
+        margin: 10px 0;
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+    .container01 {
+        margin: 10px;
+        min-height: 550px;
+    }
+
+    .container01 form {
+        padding: 0 20px;
+    }
+
+    .mobile-nav {
+        bottom: -50px;
+    }
+
+    .mobile-nav button {
+        padding: 6px 20px;
+        font-size: 13px;
     }
 }
 

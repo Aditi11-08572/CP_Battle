@@ -88,6 +88,25 @@ const LoginSignup = () => {
                 onClose={() => setAlert({ ...alert, isVisible: false })}
             />
             
+            <div className={styles['mobile-nav']}>
+                <motion.button
+                    className={!isActive ? styles.active : ''}
+                    onClick={() => setIsActive(false)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Sign In
+                </motion.button>
+                <motion.button
+                    className={isActive ? styles.active : ''}
+                    onClick={() => setIsActive(true)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Sign Up
+                </motion.button>
+            </div>
+
             <motion.div 
                 className={`${styles.container01} ${isActive ? styles.active : ''}`}
                 initial={{ scale: 0.95 }}
@@ -173,25 +192,6 @@ const LoginSignup = () => {
                             </motion.button>
                         </div>
                     </div>
-                </div>
-
-                <div className={styles['mobile-nav']}>
-                    <motion.button
-                        className={!isActive ? styles.active : ''}
-                        onClick={() => setIsActive(false)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Sign In
-                    </motion.button>
-                    <motion.button
-                        className={isActive ? styles.active : ''}
-                        onClick={() => setIsActive(true)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Sign Up
-                    </motion.button>
                 </div>
             </motion.div>
         </motion.div>
