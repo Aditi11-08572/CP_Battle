@@ -171,11 +171,11 @@ yourJourney.compete();`;
                 </div>
               </div>
               <div className={styles.editorContent}>
-                <div className={styles.lineNumbers}>
+                {/* <div className={styles.lineNumbers}>
                   {displayedCode.split('\n').map((_, i) => (
                     <span key={i}>{i + 1}</span>
                   ))}
-                </div>
+                </div> */}
                 <pre className={styles.code}>
                   <code>{displayedCode}</code>
                   {isTyping && <span className={styles.cursor}>|</span>}
