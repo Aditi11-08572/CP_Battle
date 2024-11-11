@@ -10,14 +10,14 @@ const UserRating = ({ userHandle, problemsSolved }) => {
     const updateRating = async () => {
       try {
         // Fetch current rating from the database
-        const response = await axios.get(`http://localhost:5000/api/rating/${userHandle}`);
+        const response = await axios.get(`https://cp-battle.onrender.com/api/rating/${userHandle}`);
         const currentRating = response.data.rating;
 
         // Calculate new rating based on problems solved
         const updatedRating = calculateNewRating(currentRating, problemsSolved);
 
         // Update the user's rating in the database
-        await axios.put(`http://localhost:5000/api/rating/${userHandle}`, {
+        await axios.put(`https://cp-battle.onrender.com/api/rating/${userHandle}`, {
           newRating: updatedRating,
         });
 
