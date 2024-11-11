@@ -128,7 +128,7 @@ const MyFriends = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:5000/api/friends/suggestions/${user.id}`);
+      const response = await fetch(`https://cp-battle.onrender.com/api/friends/suggestions/${user.id}`);
       if (!response.ok) {
         throw new Error('Failed to fetch friend suggestions');
       }
@@ -154,7 +154,7 @@ const MyFriends = () => {
   const fetchFriendRequests = async (userId) => {
     console.log(`Fetching friend requests for user ID: ${userId}`);
     try {
-      const response = await fetch(`http://localhost:5000/api/friends/requests/${userId}`);
+      const response = await fetch(`https://cp-battle.onrender.com/api/friends/requests/${userId}`);
       if (response.ok) {
         const requests = await response.json();
         setFriendRequests(requests);
@@ -169,7 +169,7 @@ const MyFriends = () => {
   const fetchSentRequests = async (userId) => {
     console.log(`Fetching sent requests for user ID: ${userId}`);
     try {
-      const response = await fetch(`http://localhost:5000/api/friends/sent-requests/${userId}`);
+      const response = await fetch(`https://cp-battle.onrender.com/api/friends/sent-requests/${userId}`);
       if (response.ok) {
         const requests = await response.json();
         setSentRequests(requests);
@@ -183,7 +183,7 @@ const MyFriends = () => {
 
   const fetchFriends = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/friends/${userId}`);
+      const response = await fetch(`https://cp-battle.onrender.com/api/friends/${userId}`);
       if (response.ok) {
         const friendsList = await response.json();
         setFriends(friendsList);
@@ -209,7 +209,7 @@ const MyFriends = () => {
 
   const fetchUserData = async (email) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/user/${email}`);
+      const response = await fetch(`https://cp-battle.onrender.com/api/user/${email}`);
       if (response.ok) {
         const userData = await response.json();
         const updatedUser = { ...userData, id: userData._id };
@@ -272,7 +272,7 @@ const MyFriends = () => {
 
   const handleAddFriend = async (friendId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/friends/request/${user.id}/${friendId}`, {
+      const response = await fetch(`https://cp-battle.onrender.com/api/friends/request/${user.id}/${friendId}`, {
         method: 'POST',
       });
       if (!response.ok) {
@@ -297,7 +297,7 @@ const MyFriends = () => {
 
   const handleAcceptRequest = async (friendId) => {
     try {
-      const response = await fetch('http://localhost:5000/api/friends/accept-request', {
+      const response = await fetch('https://cp-battle.onrender.com/api/friends/accept-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, friendId })
@@ -319,7 +319,7 @@ const MyFriends = () => {
 
   const handleRejectRequest = async (friendId) => {
     try {
-      const response = await fetch('http://localhost:5000/api/friends/reject-request', {
+      const response = await fetch('https://cp-battle.onrender.com/api/friends/reject-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, friendId })
@@ -351,7 +351,7 @@ const MyFriends = () => {
     if (friend.profile_pic) {
       return (
         <Avatar
-          src={`http://localhost:5000${friend.profile_pic}`}
+          src={`https://cp-battle.onrender.com${friend.profile_pic}`}
           alt={friend.name}
           className={styles.avatar}
         />
@@ -369,7 +369,7 @@ const MyFriends = () => {
 
   const handleCancelRequest = async (friendId) => {
     try {
-      const response = await fetch('http://localhost:5000/api/friends/cancel-request', {
+      const response = await fetch('https://cp-battle.onrender.com/api/friends/cancel-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ senderId: user.id, receiverId: friendId })
@@ -395,7 +395,7 @@ const MyFriends = () => {
 
   const confirmRemoveFriend = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/friends/remove-friend', {
+      const response = await fetch('https://cp-battle.onrender.com/api/friends/remove-friend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, friendId: friendToRemove._id })
