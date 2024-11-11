@@ -84,7 +84,7 @@ const ContestCreationForm = () => {
     const fetchFriends = async () => {
       try {
         const userEmail = localStorage.getItem('userEmail');
-        const response = await axios.get(`http://localhost:5000/api/users/${userEmail}/friends`);
+        const response = await axios.get(`https://cp-battle.onrender.com/api/users/${userEmail}/friends`);
         console.log('Fetched friends:', response.data); // Add this log
         setFriends(response.data);
       } catch (error) {
@@ -132,7 +132,7 @@ const ContestCreationForm = () => {
 
       console.log('Payload:', payload);
 
-      const response = await axios.post('http://localhost:5000/api/contests', payload);
+      const response = await axios.post('https://cp-battle.onrender.com/api/contests', payload);
 
       if (response.status === 201) {
         setContestInfo(response.data);
@@ -177,7 +177,7 @@ const ContestCreationForm = () => {
       };
       console.log('Sending invite payload:', payload);
       
-      const response = await axios.post('http://localhost:5000/api/contests/invite', payload);
+      const response = await axios.post('https://cp-battle.onrender.com/api/contests/invite', payload);
       console.log('Invite response:', response.data);
 
       alert('Friends invited successfully!');
