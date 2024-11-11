@@ -307,10 +307,12 @@
 h1 {
     font-weight: 700;
     margin: 0 0 20px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    /* background: linear-gradient(135deg, var(--primary), var(--secondary)); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 24px;
+
+    color:black;
 }
 
 .container01 p {

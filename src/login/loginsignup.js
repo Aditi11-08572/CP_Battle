@@ -110,14 +110,14 @@ const LoginSignup = () => {
                             Create Account
                         </motion.h1>
                         
-                        <div className={styles['social-icons']}>
+                        {/* <div className={styles['social-icons']}>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaFacebookF /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaGoogle /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaGithub /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaLinkedinIn /></motion.a>
-                        </div>
+                        </div> */}
 
-                        <span>or use your email for registration</span>
+                        <span color='white'>or use your email for registration</span>
                         <motion.div className={styles.inputGroup}>
                             <input type="text" name="name" placeholder="Name" required onChange={(e) => setName(e.target.value)} />
                             <input type="email" name="email" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
