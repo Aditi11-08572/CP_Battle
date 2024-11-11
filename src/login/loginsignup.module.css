@@ -1,15 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #4158D0;
-  --secondary-color: #C850C0;
-  --accent-color: #FFCC70;
-  --background-dark: #0F172A;
-  --background-light: #1E293B;
+  --primary-gradient: linear-gradient(135deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  --button-gradient: linear-gradient(90deg, #4CA1AF, #2DC4B3);
+  --background-dark: #1E1B2E;
+  --card-bg: #2A2640;
+  --input-bg: #FFFFFF;
   --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --success-color: #4CAF50;
-  --error-color: #FF3CAC;
+  --text-secondary: rgba(255, 255, 255, 0.7);
 }
 
 * {
@@ -20,14 +18,14 @@
 }
 
 .body01 {
-    background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+    background: var(--background-dark);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
     position: relative;
     overflow: hidden;
-    padding: 2rem;
 }
 
 /* Advanced Background Animation */
@@ -86,18 +84,16 @@
 }
 
 .container01 {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
     border-radius: 30px;
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-    width: 900px;
-    max-width: 100%;
+    width: 1200px;
+    max-width: 95%;
     min-height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     position: relative;
     overflow: hidden;
-    display: flex;
-    z-index: 1;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
 }
 
 /* Glassmorphism Effect */
@@ -122,216 +118,182 @@
 }
 
 .form-container {
-    padding: 3rem;
-    width: 50%;
-    transition: all 0.6s ease-in-out;
+    padding: 3rem 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.form-container h1 {
+    color: #4CA1AF;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #4CA1AF, #2DC4B3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .form-container form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    height: 100%;
 }
 
-.form-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: titleGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes titleGlow {
-    0% { filter: drop-shadow(0 0 2px rgba(65, 88, 208, 0.3)); }
-    100% { filter: drop-shadow(0 0 10px rgba(65, 88, 208, 0.6)); }
-}
-
-/* Enhanced Input Styling */
 .form-container input {
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    background: var(--input-bg);
+    border: none;
+    border-radius: 12px;
     padding: 1rem 1.5rem;
-    color: var(--text-primary);
     font-size: 1rem;
+    color: #333;
     transition: all 0.3s ease;
-    width: 100%;
 }
 
 .form-container input:focus {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(65, 88, 208, 0.2);
-    transform: translateY(-2px);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(76, 161, 175, 0.3);
 }
 
-.form-container input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Advanced Button Styling */
 .form-container button {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--button-gradient);
     color: white;
     border: none;
-    border-radius: 25px;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    border-radius: 30px;
+    padding: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.form-container button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: 0.5s;
-}
-
-.form-container button:hover::before {
-    left: 100%;
 }
 
 .form-container button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(76, 161, 175, 0.2);
 }
 
-/* Toggle Container Styling */
+/* Right side decoration */
 .toggle-container {
+    position: relative;
+    background: linear-gradient(135deg, #4CA1AF, #2DC4B3);
+    border-radius: 0 30px 30px 0;
+    overflow: hidden;
+}
+
+.toggle-container::before {
+    content: '';
     position: absolute;
     top: 0;
-    left: 50%;
-    width: 50%;
+    right: 0;
+    width: 100%;
     height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 1000;
-}
-
-.toggle {
-    background: linear-gradient(
-        45deg,
-        var(--primary-color),
-        var(--secondary-color),
-        var(--accent-color)
-    );
-    height: 100%;
-    color: var(--text-primary);
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+    background: linear-gradient(135deg, rgba(76, 161, 175, 0.8), rgba(45, 196, 179, 0.8));
+    border-radius: 0 30px 30px 0;
 }
 
 .toggle-panel {
-    position: absolute;
-    width: 50%;
-    height: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
     text-align: center;
+    color: white;
+}
+
+.toggle-panel h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.toggle-panel p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Fix for sign-in visibility */
+.sign-in {
+    position: absolute;
     top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
     transform: translateX(0);
     transition: all 0.6s ease-in-out;
+    opacity: 1;
+    z-index: 5;
 }
 
-/* Link Styling */
-.form-container a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.form-container a::after {
-    content: '';
+.sign-up {
     position: absolute;
-    bottom: -2px;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transition: width 0.3s ease;
+    height: 100%;
+    width: 50%;
+    transform: translateX(100%);
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+    z-index: 1;
 }
 
-.form-container a:hover::after {
-    width: 100%;
-}
-
-/* Error Message Styling */
-.error {
-    color: var(--error-color);
-    background: rgba(255, 60, 172, 0.1);
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    border-left: 4px solid var(--error-color);
-    animation: errorShake 0.5s ease-in-out;
-}
-
-@keyframes errorShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
-}
-
-/* Active State Animations */
+/* Active states */
 .container01.active .sign-in {
     transform: translateX(100%);
     opacity: 0;
-    pointer-events: none;
 }
 
 .container01.active .sign-up {
-    transform: translateX(100%);
+    transform: translateX(0);
     opacity: 1;
-    pointer-events: all;
+    z-index: 5;
 }
 
 .container01.active .toggle-container {
     transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
 }
 
-.container01.active .toggle {
-    transform: translateX(50%);
-}
-
-/* Responsive Design */
+/* Responsive design */
 @media (max-width: 768px) {
     .container01 {
-        min-height: 800px;
-        width: 100%;
+        grid-template-columns: 1fr;
     }
 
     .toggle-container {
         display: none;
     }
 
-    .form-container {
+    .sign-in,
+    .sign-up {
         width: 100%;
+        position: relative;
+        opacity: 1;
+        transform: none;
+    }
+
+    .form-container {
         padding: 2rem;
     }
+}
+
+/* Error message styling */
+.error {
+    background: rgba(255, 69, 58, 0.1);
+    color: #FF454A;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border-left: 4px solid #FF454A;
+}
+
+/* Link styling */
+.form-container a {
+    color: #4CA1AF;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.form-container a:hover {
+    color: #2DC4B3;
 }
