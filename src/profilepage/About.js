@@ -8,7 +8,7 @@ import styles from './About.module.css';
 
 const About = () => {
   const [headingText, setHeadingText] = useState('');
-  const fullHeading = 'MEET OUR TEAM';
+  const fullHeading = 'MEEET OUR TEAM';
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
