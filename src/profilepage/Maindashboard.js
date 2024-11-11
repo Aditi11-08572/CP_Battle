@@ -70,7 +70,7 @@ const Mainboard = () => {
         return;
       }
       console.log('Fetching notifications for:', userEmail);
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/notifications/${userEmail}`);
+      const response = await axios.get(`http://localhost:5000/api/notifications/${userEmail}`);
       console.log('Fetched notifications:', response.data);
       setNotifications(response.data);
       setUnreadCount(response.data.filter(notif => !notif.read).length);
@@ -101,7 +101,7 @@ const Mainboard = () => {
   const markAllAsRead = async () => {
     try {
       const userEmail = localStorage.getItem('userEmail');
-      await axios.post(`https://codecraft-contest1.onrender.com/api/notifications/${userEmail}/mark-read`);
+      await axios.post(`http://localhost:5000/api/notifications/${userEmail}/mark-read`);
       setUnreadCount(0);
       setNotifications(notifications.map(notif => ({ ...notif, read: true })));
     } catch (error) {
@@ -120,7 +120,7 @@ const Mainboard = () => {
       // Wait for the animation to complete
       await new Promise(resolve => setTimeout(resolve, 300));
 
-      await axios.delete(`https://codecraft-contest1.onrender.com/api/notifications/${notificationId}`);
+      await axios.delete(`http://localhost:5000/api/notifications/${notificationId}`);
       setNotifications(prevNotifications => 
         prevNotifications.filter(notification => notification._id !== notificationId)
       );
@@ -200,7 +200,7 @@ const copyToClipboard = async (code) => {
       const userEmail = localStorage.getItem('userEmail');
       console.log(`Attempting to join contest ${contestCode} for user ${userEmail}`);
       
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/contests/${contestCode}/check-invitation`, {
+      const response = await axios.get(`http://localhost:5000/api/contests/${contestCode}/check-invitation`, {
         params: { userEmail }
       });
       
@@ -240,7 +240,7 @@ const copyToClipboard = async (code) => {
       setError(null);
       const userEmail = localStorage.getItem('userEmail');
       console.log('Fetching contests for user:', userEmail);
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/user-contests`, {
+      const response = await axios.get(`http://localhost:5000/api/user-contests`, {
         params: { userEmail }
       });
       console.log('Fetched contests:', response.data);
@@ -261,7 +261,7 @@ const copyToClipboard = async (code) => {
       if (!userEmail) {
         throw new Error('User email not found in localStorage');
       }
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/ongoing-contests`, {
+      const response = await axios.get(`http://localhost:5000/api/ongoing-contests`, {
         params: { userEmail }
       });
       setOngoingContests(response.data);
@@ -278,7 +278,7 @@ const copyToClipboard = async (code) => {
       setLoading(true);
       setError(null);
       const userEmail = localStorage.getItem('userEmail');
-      const response = await axios.get(`https://codecraft-contest1.onrender.com/api/past-contests`, {
+      const response = await axios.get(`http://localhost:5000/api/past-contests`, {
         params: { userEmail }
       });
       setPastContests(response.data);
