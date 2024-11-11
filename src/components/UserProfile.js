@@ -8,7 +8,7 @@ const UserProfile = ({ userHandle }) => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(`https://codecraft-contest1.onrender.com/api/users/${userHandle}/profile`);
+        const response = await axios.get(`http://localhost:5000/api/users/${userHandle}/profile`);
         setUserProfile(response.data);
       } catch (error) {
         console.error('Error fetching user profile:', error);
