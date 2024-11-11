@@ -207,7 +207,7 @@ yourJourney.compete();`;
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className={styles.gradientText}>Revolutionary</span> Features
+          <span className={styles.gradientText}>Revolutionary Features</span> 
         </motion.h2>
         
         <div className={styles.featuresGrid}>
@@ -274,7 +274,7 @@ const StatsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Our Global <span className={styles.gradientText}>Impact</span>
+         <span className={styles.gradientText}> Our Global Impact</span>
         </motion.h2>
         
         <div className={styles.statsGrid}>
@@ -339,7 +339,7 @@ const TestimonialsSection = () => {
       viewport={{ once: true }}
     >
       <h2 className={styles.sectionTitle}>
-        What Our <span className={styles.gradientText}>Users Say</span>
+         <span className={styles.gradientText}>What Our Users Say</span>
       </h2>
       
       <div className={styles.testimonialGrid}>
