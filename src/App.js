@@ -26,6 +26,7 @@ import UserProfile from './components/UserProfile';
 import Navbar from './profilepage/Navbar';  
 import About from './profilepage/About';
 import EmailVerification from './login/EmailVerification';
+import LandingPage from './pages/LandingPage';
 
 // Wrap components with PageTransition HOC
 // const TransitionedMainDashboard = PageTransition(MainDashboard);
@@ -45,7 +46,7 @@ function App() {
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
-      
+          <Route path="/landing" element={<LandingPage />} />
 
           {/* Protected routes */}
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
