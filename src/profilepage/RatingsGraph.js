@@ -16,7 +16,7 @@ function RatingsGraph() {
       try {
         // First, fetch the user's Codeforces ID from your backend
         const userEmail = localStorage.getItem('userEmail');
-        const userResponse = await axios.get(`https://codecraft-contest1.onrender.com/api/user/profile/${userEmail}`);
+        const userResponse = await axios.get(`http://localhost:5000/api/user/profile/${userEmail}`);
         const codeforcesId = userResponse.data.codeforcesId;
 
         if (!codeforcesId) {
