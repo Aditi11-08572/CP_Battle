@@ -254,10 +254,10 @@ const FeatureCard = ({ icon, title, description, color, index, isActive }) => {
 
 const StatsSection = () => {
   const stats = [
-    { icon: <FaUsers />, number: "10K+", label: "Active Users" },
-    { icon: <FaTrophy />, number: "5K+", label: "Contests Hosted" },
-    { icon: <FaBrain />, number: "1M+", label: "Problems Solved" },
-    { icon: <FaRocket />, number: "100+", label: "Countries Reached" }
+    { icon: <FaUsers />, number: "20+", label: "Active Users" },
+    { icon: <FaTrophy />, number: "100+", label: "Contests Hosted" },
+    { icon: <FaBrain />, number: "350+", label: "Problems Solved" },
+    { icon: <FaRocket />, number: "5+", label: "Countries Reached" }
   ];
 
   return (
@@ -315,12 +315,12 @@ const StatCard = ({ icon, number, label, index }) => {
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: "Alex Chen",
+      name: "Rohit Wadne",
       role: "Competitive Programmer",
       text: "CodeCraft transformed my competitive programming journey. The custom contests feature is revolutionary!"
     },
     {
-      name: "Sarah Johnson",
+      name: "Kishor Pandhare",
       role: "Software Engineer",
       text: "The real-time rankings and community features make practicing algorithms fun and engaging."
     },

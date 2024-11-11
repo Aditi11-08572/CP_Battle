@@ -131,6 +131,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientFlow 8s ease infinite;
+ 
 }
 
 @keyframes gradientFlow {
