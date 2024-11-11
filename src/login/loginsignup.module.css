@@ -433,6 +433,15 @@ h1 {
         padding: 10px 20px;
         border-radius: 20px;
         cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-nav button.active {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+    }
+}
+
 /* Make sure form content is visible */
 .sign-up form,
 .sign-in form {
