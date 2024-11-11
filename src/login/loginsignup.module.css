@@ -355,23 +355,84 @@ h1 {
 /* Responsive Design */
 @media (max-width: 768px) {
     .container01 {
-        min-height: 800px;
+        min-height: 600px;
         margin: 20px;
+        width: 90%;
     }
 
     .toggle-container {
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        display: block;
+    }
+
+    .toggle {
+        position: relative;
+        width: 100%;
+        left: 0;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .toggle-panel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 20px;
         display: none;
     }
 
     .sign-in, .sign-up {
+        position: absolute;
         width: 100%;
+        left: 0;
+        height: 100%;
+        padding: 20px;
+    }
+
+    .sign-in {
+        opacity: 1;
+        z-index: 2;
+        transform: translateX(0);
+    }
+
+    .sign-up {
+        opacity: 0;
+        z-index: 1;
+        transform: translateX(100%);
+    }
+
+    /* Show active form */
+    .container01.active .sign-in {
+        transform: translateX(-100%);
+        opacity: 0;
     }
 
     .container01.active .sign-up {
         transform: translateX(0);
+        opacity: 1;
+        z-index: 5;
     }
-}
 
+    /* Mobile navigation buttons */
+    .mobile-nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .mobile-nav button {
+        background: transparent;
+        border: 2px solid var(--text-primary);
+        color: var(--text-primary);
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
 /* Make sure form content is visible */
 .sign-up form,
 .sign-in form {
