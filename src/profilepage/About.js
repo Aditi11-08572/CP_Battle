@@ -56,7 +56,7 @@ const About = () => {
       job: "Software Tester",
       about: "Excited to Explore new things",
       image: "Bacchi.jpg",
-      topImage: "https://i.imgur.com/vG9oi4t.jpg",
+      topImage: "background_bacchi.jpg",
       whatsapp: "918591711567",
      
     }
