@@ -43,7 +43,7 @@ const LoginSignup = () => {
         const password = e.target.elements.password.value;
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/signin', {
+            const response = await fetch('https://cp-battle.onrender.com/api/auth/signin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -77,7 +77,7 @@ const LoginSignup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const checkResponse = await axios.post('http://localhost:5000/api/auth/check-user', { email });
+            const checkResponse = await axios.post('https://cp-battle.onrender.com/api/auth/check-user', { email });
             if (checkResponse.data.message === 'Email is available') {
                 navigate('/email-verification', { state: { name, email, password, codeforcesId } });
             } else {
