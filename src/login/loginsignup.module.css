@@ -451,6 +451,8 @@ h1, .sh {
     color: var(--text-primary) !important;
     font-size: 24px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: none !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
 }
 
 /* Hide mobile nav in desktop */
@@ -466,4 +468,34 @@ h1, .sh {
         margin-top: 20px;
         width: 100%;
     }
+}
+
+/* Update text styles */
+span, p {
+    color: var(--text-primary) !important;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Toggle panel text styles */
+.toggle-panel h1,
+.toggle-panel p {
+    color: var(--text-primary) !important;
+    opacity: 1;
+}
+
+/* Form container text styles */
+.form-container h1,
+.form-container span {
+    color: var(--text-primary) !important;
+    opacity: 1;
+    z-index: 2;
+    position: relative;
+}
+
+/* Remove any conflicting styles */
+.container01 h1 {
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--text-primary) !important;
 }

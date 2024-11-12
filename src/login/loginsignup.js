@@ -102,13 +102,7 @@ const LoginSignup = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <form onSubmit={handleSignup}>
-                        <motion.h1
-                            initial={{ y: -20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.1 }}
-                        >
-                            Create Account
-                        </motion.h1>
+                        <h1 className={styles.sh}>Create Account</h1>
                         
                         {/* <div className={styles['social-icons']}>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaFacebookF /></motion.a>
@@ -138,7 +132,7 @@ const LoginSignup = () => {
                 {/* Sign In Form */}
                 <div className={`${styles['form-container']} ${styles['sign-in']}`}>
                     <form onSubmit={handleLogin}>
-                        <h1 color='white' className={styles.sh}>Sign In</h1>
+                        <h1 className={styles.sh}>Sign In</h1>
                         {/* <div className={styles['social-icons']}>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaFacebookF /></motion.a>
                             <motion.a whileHover={{ scale: 1.1 }} href="#"><FaGoogle /></motion.a>
@@ -163,7 +157,7 @@ const LoginSignup = () => {
                 <div className={styles['toggle-container']}>
                     <div className={styles.toggle}>
                         <div className={`${styles['toggle-panel']} ${styles['toggle-left']}`}>
-                            <h1  color='white' className={styles.sh}>Welcome Back!</h1>
+                            <h1 className={styles.sh}>Welcome Back!</h1>
                             <p>Enter your personal details to use all of site features</p>
                             <motion.button 
                                 className={styles.hidden}
@@ -175,7 +169,7 @@ const LoginSignup = () => {
                             </motion.button>
                         </div>
                         <div className={`${styles['toggle-panel']} ${styles['toggle-right']}`}>
-                            <h1  color='white'  className={styles.sh}>Hello, Friend!</h1>
+                            <h1 className={styles.sh}>Hello, Friend!</h1>
                             <p>Register with your personal details to use all of site features</p>
                             <motion.button 
                                 className={styles.hidden}
