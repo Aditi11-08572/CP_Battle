@@ -59,3 +59,13 @@
 .success {
   border-left: 4px solid #28a745;
 }
+
+.alert {
+  color: #000000 !important;
+  background: white;
+  /* rest of your styles */
+}
+
+.alert * {
+  color: #000000 !important;
+}

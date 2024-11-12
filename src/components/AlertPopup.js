@@ -16,7 +16,7 @@ const AlertPopup = ({ message, type, isVisible, onClose }) => {
 
   return (
     <div className={styles.alertOverlay}>
-      <div className={`${styles.alertBox} ${styles[type]}`}>
+      <div className={`${styles.alert} ${styles[type]}`} style={{ color: '#000000 !important' }}>
         <p>{message}</p>
       </div>
     </div>
