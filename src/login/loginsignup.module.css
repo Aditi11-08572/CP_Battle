@@ -514,3 +514,105 @@
     background-clip: unset;
     -webkit-text-fill-color: var(--text-primary) !important;
 }
+
+/* Mobile Navigation Buttons */
+.mobile-nav {
+    display: none; /* Hidden by default for desktop */
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.mobile-nav button {
+    background: linear-gradient(135deg, #4F46E5, #06B6D4);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+}
+
+.mobile-nav button.active {
+    background: transparent;
+    border: 2px solid #4F46E5;
+    color: #4F46E5;
+}
+
+/* Toggle Panel Buttons */
+.toggle-panel button.hidden {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+    margin-top: 20px;
+}
+
+.toggle-panel button.hidden:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Form Submit Buttons */
+.form-container button[type="submit"] {
+    background: linear-gradient(135deg, #4F46E5, #06B6D4);
+    color: white;
+    border: none;
+    padding: 12px 45px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 140px;
+    margin-top: 20px;
+}
+
+.form-container button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: flex;
+    }
+
+    .toggle-container {
+        display: none;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .sign-in, .sign-up {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+    }
+
+    .container01.active .sign-up {
+        transform: translateX(0);
+    }
+
+    .container01.active .sign-in {
+        transform: translateX(-100%);
+    }
+}
