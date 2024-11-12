@@ -405,4 +405,5 @@ h1 {
 .sh{
     color:white;
     background-color: transparent;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
