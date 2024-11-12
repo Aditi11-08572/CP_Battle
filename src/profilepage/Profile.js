@@ -49,18 +49,21 @@ function Profile() {
       formData.append('college', userProfile.college || '');
       formData.append('whatsappNumber', userProfile.whatsappNumber || '');
       formData.append('linkedinUrl', userProfile.linkedinUrl || '');
+      
       if (selectedImage) {
         formData.append('profileImage', selectedImage);
       }
 
-      console.log('Sending form data:', Object.fromEntries(formData));
-
-      const response = await axios.put(`https://cp-battle.onrender.com/api/user/profile/${userProfile.email}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const response = await axios.put(
+        `https://cp-battle.onrender.com/api/user/profile/${userProfile.email}`, 
+        formData, 
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         }
-      });
-      console.log('Server response:', response.data);
+      );
+
       if (response.data.success) {
         const updatedUser = response.data.user;
         setUserProfile(updatedUser);

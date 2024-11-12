@@ -12,6 +12,7 @@ const socketIo = require('socket.io');
 const axios = require('axios');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 app.use(express.json());
@@ -1102,64 +1103,97 @@ app.get('/api/user/profile/:email', async (req, res) => {
   }
 });
 
-// Set up multer for handling file uploads
+// 1. First, ensure the uploads directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+// 2. Update the multer configuration
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/') // Make sure this directory exists
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)) // Appending extension
-  }
+    destination: function (req, file, cb) {
+        cb(null, uploadsDir);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ 
+    storage: storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: (req, file, cb) => {
+        // Accept only image files
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only image files are allowed!'));
+        }
+    }
+});
 
-// Update the profile update endpoint
+// 3. Update the profile update endpoint
 app.put('/api/user/profile/:email', upload.single('profileImage'), async (req, res) => {
-  try {
-    const { email } = req.params;
-    const { location, college, whatsappNumber, linkedinUrl } = req.body;
-    
-    console.log('Updating profile for:', email);
-    console.log('Request body:', req.body);
-    
-    let updateData = {
-      location,
-      college,
-      whatsappNumber,
-      linkedinUrl
-    };
+    try {
+        const { email } = req.params;
+        const { location, college, whatsappNumber, linkedinUrl } = req.body;
+        
+        console.log('Updating profile for:', email);
+        console.log('Request body:', req.body);
+        console.log('File:', req.file);
+        
+        let updateData = {
+            location,
+            college,
+            whatsappNumber,
+            linkedinUrl
+        };
 
-    if (req.file) {
-      updateData.profile_pic = '/uploads/' + req.file.filename;
+        if (req.file) {
+            // Store the relative path
+            updateData.profile_pic = `/uploads/${req.file.filename}`;
+            console.log('Profile pic path:', updateData.profile_pic);
+        }
+
+        // Remove undefined fields
+        Object.keys(updateData).forEach(key => 
+            updateData[key] === undefined && delete updateData[key]
+        );
+
+        const updatedUser = await User.findOneAndUpdate(
+            { email },
+            { $set: updateData },
+            { new: true, runValidators: true }
+        ).select('-password');
+
+        if (!updatedUser) {
+            return res.status(404).json({ 
+                success: false, 
+                message: 'User not found' 
+            });
+        }
+
+        res.json({ 
+            success: true, 
+            user: updatedUser,
+            message: 'Profile updated successfully'
+        });
+
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Error updating profile',
+            error: error.message 
+        });
     }
-
-    // Remove undefined fields
-    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
-
-    console.log('Update data:', updateData);
-
-    const updatedUser = await User.findOneAndUpdate(
-      { email },
-      { $set: updateData },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).json({ success: false, message: 'User not found' });
-    }
-
-    console.log('Updated user:', updatedUser);
-
-    res.json({ success: true, user: updatedUser });
-  } catch (error) {
-    console.error('Error updating profile:', error);
-    res.status(500).json({ success: false, message: 'Error updating profile' });
-  }
 });
 
-// Serve static files from the uploads directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// 4. Add static file serving for uploads
+app.use('/uploads', express.static(uploadsDir));
 
 const server = http.createServer(app);
 const io = socketIo(server);
