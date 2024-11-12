@@ -340,7 +340,7 @@ h1 {
 .error {
     background: rgba(239, 68, 68, 0.1);
     border-left: 4px solid var(--error);
-    color: #000000 !important; 
+    color: #000000 !important;
     padding: 10px 15px;
     border-radius: 4px;
     margin-top: 10px;
