@@ -200,14 +200,18 @@ const LoginSignup = () => {
                 >
                     Sign In
                 </motion.button>
-                <motion.button
-                    className={isActive ? styles.active : ''}
-                    onClick={() => setIsActive(true)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    Sign Up
-                </motion.button>
+
+                
+
+
+                  <motion.button 
+                                className={styles.hidden}
+                                onClick={() => setIsActive(true)}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Sign Up
+                            </motion.button>
             </div>
         </motion.div>
     );
