@@ -1103,97 +1103,121 @@ app.get('/api/user/profile/:email', async (req, res) => {
   }
 });
 
-// 1. First, ensure the uploads directory exists
-const uploadsDir = path.join(__dirname, 'uploads');
+// 1. Configure uploads directory with absolute path
+const uploadsDir = path.join(__dirname, '..', '..', 'public', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-// 2. Update the multer configuration
+// 2. Update multer configuration with error handling
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, uploadsDir);
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
+        const ext = path.extname(file.originalname);
+        cb(null, `profile-${uniqueSuffix}${ext}`);
     }
 });
 
-const upload = multer({ 
+const upload = multer({
     storage: storage,
     limits: {
         fileSize: 5 * 1024 * 1024 // 5MB limit
     },
     fileFilter: (req, file, cb) => {
-        // Accept only image files
-        if (file.mimetype.startsWith('image/')) {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (allowedTypes.includes(file.mimetype)) {
             cb(null, true);
         } else {
-            cb(new Error('Only image files are allowed!'));
+            cb(new Error('Invalid file type. Only JPEG, PNG and GIF are allowed.'));
         }
     }
-});
+}).single('profileImage');
 
-// 3. Update the profile update endpoint
-app.put('/api/user/profile/:email', upload.single('profileImage'), async (req, res) => {
-    try {
-        const { email } = req.params;
-        const { location, college, whatsappNumber, linkedinUrl } = req.body;
-        
-        console.log('Updating profile for:', email);
-        console.log('Request body:', req.body);
-        console.log('File:', req.file);
-        
-        let updateData = {
-            location,
-            college,
-            whatsappNumber,
-            linkedinUrl
-        };
-
-        if (req.file) {
-            // Store the relative path
-            updateData.profile_pic = `/uploads/${req.file.filename}`;
-            console.log('Profile pic path:', updateData.profile_pic);
-        }
-
-        // Remove undefined fields
-        Object.keys(updateData).forEach(key => 
-            updateData[key] === undefined && delete updateData[key]
-        );
-
-        const updatedUser = await User.findOneAndUpdate(
-            { email },
-            { $set: updateData },
-            { new: true, runValidators: true }
-        ).select('-password');
-
-        if (!updatedUser) {
-            return res.status(404).json({ 
-                success: false, 
-                message: 'User not found' 
+// 3. Update the profile endpoint with better error handling
+app.put('/api/user/profile/:email', async (req, res) => {
+    upload(req, res, async function(err) {
+        if (err instanceof multer.MulterError) {
+            console.error('Multer error:', err);
+            return res.status(400).json({
+                success: false,
+                message: 'File upload error',
+                error: err.message
+            });
+        } else if (err) {
+            console.error('Unknown error:', err);
+            return res.status(500).json({
+                success: false,
+                message: 'Unknown error occurred',
+                error: err.message
             });
         }
 
-        res.json({ 
-            success: true, 
-            user: updatedUser,
-            message: 'Profile updated successfully'
-        });
+        try {
+            const { email } = req.params;
+            const { location, college, whatsappNumber, linkedinUrl } = req.body;
 
-    } catch (error) {
-        console.error('Error updating profile:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Error updating profile',
-            error: error.message 
-        });
-    }
+            let updateData = {
+                location,
+                college,
+                whatsappNumber,
+                linkedinUrl
+            };
+
+            if (req.file) {
+                // Use relative path for storage
+                updateData.profile_pic = `/uploads/${req.file.filename}`;
+            }
+
+            // Remove undefined fields
+            Object.keys(updateData).forEach(key => 
+                updateData[key] === undefined && delete updateData[key]
+            );
+
+            const updatedUser = await User.findOneAndUpdate(
+                { email },
+                { $set: updateData },
+                { new: true }
+            ).select('-password');
+
+            if (!updatedUser) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'User not found'
+                });
+            }
+
+            res.json({
+                success: true,
+                user: updatedUser,
+                message: 'Profile updated successfully'
+            });
+
+        } catch (error) {
+            console.error('Database error:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Error updating profile',
+                error: error.message
+            });
+        }
+    });
 });
 
-// 4. Add static file serving for uploads
-app.use('/uploads', express.static(uploadsDir));
+// 4. Serve static files from public directory
+app.use(express.static(path.join(__dirname, '..', '..', 'public')));
+
+// 5. Add error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Global error handler:', err);
+    res.status(500).json({
+        success: false,
+        message: 'Internal server error',
+        error: err.message
+    });
+});
 
 const server = http.createServer(app);
 const io = socketIo(server);

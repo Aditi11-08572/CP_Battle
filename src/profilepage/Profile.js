@@ -10,6 +10,7 @@ function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
 
@@ -54,13 +55,17 @@ function Profile() {
         formData.append('profileImage', selectedImage);
       }
 
+      setIsLoading(true);
+
       const response = await axios.put(
         `https://cp-battle.onrender.com/api/user/profile/${userProfile.email}`, 
         formData, 
         {
           headers: {
             'Content-Type': 'multipart/form-data'
-          }
+          },
+          timeout: 30000,
+          responseType: 'json'
         }
       );
 
@@ -69,11 +74,17 @@ function Profile() {
         setUserProfile(updatedUser);
         setUserData(updatedUser);
         closeModal();
+        alert('Profile updated successfully');
       } else {
         console.error('Failed to update profile:', response.data.message);
+        alert('Failed to update profile: ' + response.data.message);
       }
     } catch (error) {
-      console.error('Error updating profile:', error.response?.data || error.message);
+      console.error('Error updating profile:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Unknown error occurred';
+      alert('Error updating profile: ' + errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
