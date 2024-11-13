@@ -53,7 +53,7 @@ const CustomNavbar = () => {
               animate={{ y: 0 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              CODE CRAFT
+              CP-Battle
             </motion.span>
           </Navbar.Brand>
         </motion.div>
