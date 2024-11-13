@@ -51,15 +51,15 @@ const About = () => {
         { icon: faLinkedinIn, link: "https://www.linkedin.com/in/ironman-marvel-28355925b/" }
       ]
     },
-    {
-      name: "Rohit Shinde",
-      job: "Software Tester",
-      about: "Excited to Explore new things",
-      image: "Bacchi.jpg",
-      topImage: "background_bacchi.jpg",
-      whatsapp: "918591711567",
-      social: [] // Add an empty array if there are no social links
-    }
+    // {
+    //   name: "Rohit Shinde",
+    //   job: "Software Tester",
+    //   about: "Excited to Explore new things",
+    //   image: "Bacchi.jpg",
+    //   topImage: "background_bacchi.jpg",
+    //   whatsapp: "918591711567",
+    //   social: [] // Add an empty array if there are no social links
+    // }
   ];
 
   return (
