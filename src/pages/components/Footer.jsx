@@ -9,7 +9,7 @@ const Footer = () => {
       <div className={styles.footerContent}>
         <div className={styles.footerMain}>
           <div className={styles.footerBrand}>
-            <h3 className={styles.gradientText}>CodeCraft</h3>
+            <h3 className={styles.gradientText}>CP-Battle</h3>
             <p>Empowering competitive programmers worldwide</p>
           </div>
           
@@ -38,7 +38,7 @@ const Footer = () => {
         </div>
         
         <div className={styles.footerBottom}>
-          <p>© 2024 CodeCraft. All rights reserved.</p>
+          <p>© 2024 CP-Battle. All rights reserved.</p>
           <div className={styles.footerSocial}>
             <a href="#" aria-label="GitHub"><FaGithub /></a>
             <a href="#" aria-label="Twitter"><FaTwitter /></a>

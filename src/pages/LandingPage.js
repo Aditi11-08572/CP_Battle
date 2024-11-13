@@ -44,7 +44,7 @@ const LandingPage = () => {
   ];
 
   const codeSnippet = `
-class CodeCraft {
+class CP-Battle {
   constructor() {
     this.passion = "∞";
     this.skills = ["DSA", "CP", "Problem Solving"];
@@ -62,7 +62,7 @@ class CodeCraft {
 }
 
 // Your coding journey begins here
-const yourJourney = new CodeCraft();
+const yourJourney = new CP-Battle();
 yourJourney.compete();`;
 
   const [displayedCode, setDisplayedCode] = useState('');
@@ -137,7 +137,7 @@ yourJourney.compete();`;
             transition={{ duration: 0.8 }}
           >
             <h1 className={styles.gradientText}>
-              Welcome to <span className={styles.gradientText}>CodeCraft</span>
+              Welcome to <span className={styles.gradientText}>CP-Battle</span>
             </h1>
             <div className={styles.titleDecoration} />
           </motion.div>
@@ -317,7 +317,7 @@ const TestimonialsSection = () => {
     {
       name: "Rohit Wadne",
       role: "Competitive Programmer",
-      text: "CodeCraft transformed my competitive programming journey. The custom contests feature is revolutionary!"
+      text: "CP-Battle transformed my competitive programming journey. The custom contests feature is revolutionary!"
     },
     {
       name: "Kishor Pandhare",
@@ -379,12 +379,12 @@ const Footer = () => {
       <div className={styles.footerContent}>
         <div className={styles.footerMain}>
           <div className={styles.footerBrand}>
-            <h3 className={styles.gradientText}>CodeCraft</h3>
+            <h3 className={styles.gradientText}>CP-Battle</h3>
             <p>Empowering competitive programmers worldwide</p>
           </div>
         </div>
         <div className={styles.footerBottom}>
-          <p>© 2024 CodeCraft. All rights reserved.</p>
+          <p>© 2024 CP-Battle. All rights reserved.</p>
         </div>
       </div>
       <div className={styles.footerGlow} />

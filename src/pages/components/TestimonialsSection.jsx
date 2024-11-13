@@ -8,7 +8,7 @@ const TestimonialsSection = () => {
       name: "Alex Chen",
       role: "Competitive Programmer",
       image: "path/to/image1.jpg",
-      text: "CodeCraft transformed my competitive programming journey. The custom contests feature is revolutionary!"
+      text: "CP-Battle transformed my competitive programming journey. The custom contests feature is revolutionary!"
     },
     {
       name: "Sarah Johnson",
