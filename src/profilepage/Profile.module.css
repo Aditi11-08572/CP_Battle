@@ -1,43 +1,27 @@
 /* Profile Container */
 .container {
-  max-width: 90%;
-  margin: 20px auto 100px;
-  padding: 15px;
-  width: 100%;
+  max-width: 400px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+   margin-bottom: 100px;
 }
 
 /* Profile Header */
 .header {
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 15px;
-  width: 100%;
+  align-items: flex-start; /* Align items at the start */
   margin-bottom: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 /* Avatar Styles */
-.avatar {
-  margin-right: 0;
-  margin-bottom: 20px;
-  width: 150px;
-  height: 150px;
-}
 
-.avatar img {
-  width: 150px;
-  height: 150px;
-}
 
 /* Profile Details */
 .details {
-  width: 100%;
-  text-align: center;
   flex-grow: 1;
   margin-top: 10px; /* Space between avatar and details */
   font-family: 'Calibri', sans-serif; /* Set font to Calibri */
@@ -46,13 +30,13 @@
 
 .details h2 {
   margin: 0;
-  font-size: clamp(20px, 4vw, 24px);
+  font-size: 26px; /* Slightly larger font size */
   color: #007BFF; /* Change to a blue color */
   font-weight: bold; /* Bold font */
 }
 
 .username {
-  font-size: clamp(16px, 3vw, 22px);
+  font-size: 18px; /* Increase font size */
   color: #666; /* Slightly lighter color */
   font-style: italic; /* Italicize for emphasis */
   margin-bottom: 5px; /* Space below username */
@@ -67,7 +51,7 @@
 
 .info {
   margin: 5px 0;
-  font-size: clamp(14px, 2.5vw, 20px);
+  font-size: 16px; /* Consistent font size */
 }
 
 /* Edit Button */
@@ -199,9 +183,8 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 90%;
-  max-width: 100%;
-  padding: 15px;
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -216,8 +199,6 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
-  width: 100%;
-  max-width: 100%;
 }
 
 .submitForm button[type="submit"] {
@@ -358,46 +339,4 @@
   background-color: #f0f0f0;
   color: #666;
   cursor: not-allowed;
-}
-
-/* Add media queries for different screen sizes */
-@media (min-width: 768px) {
-  .container {
-    max-width: 700px;
-  }
-
-  .header {
-    flex-direction: row;
-    text-align: left;
-  }
-
-  .avatar {
-    margin-right: 20px;
-    margin-bottom: 0;
-  }
-
-  .details {
-    text-align: left;
-  }
-
-  .editButton {
-    margin-left: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 900px;
-  }
-
-  .avatar, .avatar img {
-    width: 190px;
-    height: 190px;
-  }
-}
-
-/* Remove conflicting styles */
-.editButton {
-  margin-left: auto; /* Remove fixed margin-left */
-  left: auto !important; /* Remove fixed positioning */
 }
