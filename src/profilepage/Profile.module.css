@@ -1,27 +1,43 @@
 /* Profile Container */
 .container {
-  max-width: 400px;
-  padding: 20px;
+  max-width: 90%;
+  margin: 20px auto 100px;
+  padding: 15px;
+  width: 100%;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
-   margin-bottom: 100px;
 }
 
 /* Profile Header */
 .header {
-  align-items: flex-start; /* Align items at the start */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
 }
 
 /* Avatar Styles */
+.avatar {
+  margin-right: 0;
+  margin-bottom: 20px;
+  width: 150px;
+  height: 150px;
+}
 
+.avatar img {
+  width: 150px;
+  height: 150px;
+}
 
 /* Profile Details */
 .details {
+  width: 100%;
+  text-align: center;
   flex-grow: 1;
   margin-top: 10px; /* Space between avatar and details */
   font-family: 'Calibri', sans-serif; /* Set font to Calibri */
@@ -30,13 +46,13 @@
 
 .details h2 {
   margin: 0;
-  font-size: 26px; /* Slightly larger font size */
+  font-size: clamp(20px, 4vw, 24px);
   color: #007BFF; /* Change to a blue color */
   font-weight: bold; /* Bold font */
 }
 
 .username {
-  font-size: 18px; /* Increase font size */
+  font-size: clamp(16px, 3vw, 22px);
   color: #666; /* Slightly lighter color */
   font-style: italic; /* Italicize for emphasis */
   margin-bottom: 5px; /* Space below username */
@@ -51,7 +67,7 @@
 
 .info {
   margin: 5px 0;
-  font-size: 16px; /* Consistent font size */
+  font-size: clamp(14px, 2.5vw, 20px);
 }
 
 /* Edit Button */
@@ -183,8 +199,9 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
-  max-width: 400px;
+  width: 90%;
+  max-width: 100%;
+  padding: 15px;
   margin: 0 auto;
 }
 
