@@ -216,6 +216,8 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .submitForm button[type="submit"] {
@@ -356,4 +358,46 @@
   background-color: #f0f0f0;
   color: #666;
   cursor: not-allowed;
+}
+
+/* Add media queries for different screen sizes */
+@media (min-width: 768px) {
+  .container {
+    max-width: 700px;
+  }
+
+  .header {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .avatar {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .details {
+    text-align: left;
+  }
+
+  .editButton {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .avatar, .avatar img {
+    width: 190px;
+    height: 190px;
+  }
+}
+
+/* Remove conflicting styles */
+.editButton {
+  margin-left: auto; /* Remove fixed margin-left */
+  left: auto !important; /* Remove fixed positioning */
 }
